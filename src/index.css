@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@theme {
+  /* Colors */
+  --color-bg: #27282b;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #0f0f10;
+  --color-text-nav: #beb9c0;
+  --color-light-gray: #f0eff0;
+  --color-gray-medium: #a49fa8;
+  --color-gray-darker: #1b1c1d;
+  --color-gray-dark: #38393e;
+  --color-prim1: #ffb75e;
+  --color-prim2: #e88100;
+  --green-primary: #09330f;
+  --green-secondary: #41c64f;
+  --red-delete: #f01111;
+
+  /* Fonts */
+  --font-primary: "Roboto", sans-serif;
+  --font-secondary: "Poppins", sans-serif;
+  --font-technical: "IBM Plex Mono", monospace;
+}
+
+/* utilitary class */
+.sidebar-focus {
+  @apply flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-prim1 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-darker transition-colors rounded-md;
+}

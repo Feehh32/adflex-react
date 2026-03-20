@@ -10,6 +10,7 @@ const SidebarMobileHeader = ({ onOpen }) => {
       <Link
         to="/"
         className="inline-flex focus-visible:outline focus-visible:outline-prim1"
+        aria-label="Página inicial"
       >
         <SidebarLogo className="h-7 w-auto" />
       </Link>

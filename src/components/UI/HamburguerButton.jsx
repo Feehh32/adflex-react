@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 
-const HamburgerButton = ({ isOpen, onClick, label = "Abrir menu" }) => {
+const HamburgerButton = ({ isOpen, onClick }) => {
   return (
     <button
       type="button"
-      aria-label={label}
+      aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
       aria-expanded={isOpen}
       onClick={onClick}
+      aria-controls="sidebar-menu"
       className="
         group
         relative
@@ -25,20 +26,23 @@ const HamburgerButton = ({ isOpen, onClick, label = "Abrir menu" }) => {
       "
     >
       <span
+        aria-hidden="true"
         className={`
-          absolute h-0.5 w-6 bg-current transition-all duration-300
+          absolute h-0.5 w-6 bg-current transition-opacity duration-300
           ${isOpen ? "rotate-45" : "-translate-y-2"}
         `}
       />
       <span
+        aria-hidden="true"
         className={`
-          absolute h-0.5 w-6 bg-current transition-all duration-300
+          absolute h-0.5 w-6 bg-current transition-opacity duration-300
           ${isOpen ? "opacity-0" : ""}
         `}
       />
       <span
+        aria-hidden="true"
         className={`
-          absolute h-0.5 w-6 bg-current transition-all duration-300
+          absolute h-0.5 w-6 bg-current transition-opacity duration-300
           ${isOpen ? "-rotate-45" : "translate-y-2"}
         `}
       />
@@ -49,7 +53,6 @@ const HamburgerButton = ({ isOpen, onClick, label = "Abrir menu" }) => {
 HamburgerButton.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
-  label: PropTypes.string,
 };
 
 export default HamburgerButton;

@@ -9,6 +9,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Remove cancel button from input [type="search"] */
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* Remove decoration from input [type="search"] */
+input[type="search"]::-webkit-search-decoration {
+  display: none;
+}
+
 @theme {
   /* Colors */
   --color-bg: #27282b;
@@ -21,9 +31,9 @@ body {
   --color-gray-dark: #38393e;
   --color-prim1: #ffb75e;
   --color-prim2: #e88100;
-  --green-primary: #09330f;
-  --green-secondary: #41c64f;
-  --red-delete: #f01111;
+  --color-green-primary: #09330f;
+  --color-green-secondary: #41c64f;
+  --color-red-delete: #f01111;
 
   /* Fonts */
   --font-primary: "Roboto", sans-serif;

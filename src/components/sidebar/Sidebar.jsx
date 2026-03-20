@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import SidebarLogo from "../../assets/logoColorida.svg?react";
@@ -13,6 +13,11 @@ import SidebarMobileHeader from "./SidebarMobileHeader";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const canGoBack = window.history.state?.idx > 0;
+  const canGoForward = window.history.state?.idx < window.history.length - 1;
+
   return (
     <>
       {isOpen && (
@@ -20,9 +25,11 @@ const Sidebar = () => {
           className="fixed inset-0 z-40 bg-black/50 md:hidden"
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
+          role="presentation"
         />
       )}
       <aside
+        id="sidebar-menu"
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } flex flex-col fixed md:static bg-gray-darker min-h-screen border-r border-gray-dark transition-transform duration-300 ease-in-out z-50 w-67.5 shadow-sm md:shadow-none md:translate-x-0`}
@@ -33,11 +40,12 @@ const Sidebar = () => {
             to="/"
             className=" sidebar-focus"
             onClick={() => setIsOpen(false)}
+            aria-label="Página inicial"
           >
             <SidebarLogo className="h-7 w-auto" />
           </Link>
         </header>
-        <nav aria-label="primary">
+        <nav aria-label="Navegação principal">
           <ul className="flex flex-col font-secondary">
             <li className="border-b border-gray-dark pt-8 pb-8 flex flex-col gap-5">
               <Link
@@ -46,7 +54,7 @@ const Sidebar = () => {
                 onClick={() => setIsOpen(false)}
               >
                 <HomeIcon aria-hidden="true" />
-                <p>Início</p>
+                <span>Início</span>
               </Link>
 
               <Link
@@ -55,7 +63,7 @@ const Sidebar = () => {
                 onClick={() => setIsOpen(false)}
               >
                 <ServiceOrderIcon aria-hidden="true" />
-                <p>Gerar nova OS</p>
+                <p>Gerar nova O.S</p>
               </Link>
             </li>
             <li className="border-b border-gray-dark pt-8 pb-8 flex flex-col gap-5">
@@ -89,14 +97,31 @@ const Sidebar = () => {
           </ul>
         </nav>
         <div className="flex pl-8 pr-8 pt-2 justify-between items-center text-gray-medium">
-          <button className="sidebar-focus flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-dark rounded-md text-sm">
+          <button
+            className={`sidebar-focus flex items-center gap-2 p-2 rounded-md text-sm 
+              ${
+                canGoBack
+                  ? "cursor-pointer hover:bg-gray-dark"
+                  : "opacity-40 cursor-auto pointer-events-none"
+              }`}
+            onClick={() => navigate(-1)}
+            disabled={!canGoBack}
+          >
             <Arrow
               className="rotate-180 text-gray-medium w-5 h-5"
               aria-hidden="true"
             />
             <span>Voltar</span>
           </button>
-          <button className="sidebar-focus flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-dark rounded-md text-sm">
+          <button
+            className={`sidebar-focus flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-dark rounded-md text-sm ${
+              canGoForward
+                ? "cursor-pointer hover:bg-gray-dark"
+                : "opacity-40 cursor-auto pointer-events-none"
+            }`}
+            onClick={() => navigate(1)}
+            disabled={!canGoBack}
+          >
             <span>Avançar</span>
             <Arrow className="text-gray-medium w-5 h-5" aria-hidden="true" />
           </button>

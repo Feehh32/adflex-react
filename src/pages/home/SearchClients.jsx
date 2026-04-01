@@ -95,7 +95,7 @@ const SearchClients = ({ allClients }) => {
   return (
     <div
       ref={searchRef}
-      className="flex w-full md:w-[40%] items-center focus-within:ring-2 focus-within:ring-gray-medium rounded-lg border border-gray-dark relative"
+      className="flex w-full md:w-[40%] items-center focus-within:ring-2 focus-within:ring-prim1 rounded-lg border border-gray-dark relative"
     >
       <label htmlFor="client-search" className="sr-only">
         Buscar cliente pelo nome
@@ -129,13 +129,12 @@ const SearchClients = ({ allClients }) => {
         }}
         onKeyDown={handleKeyDown}
       />
-      <button
+      <span
         type="button"
-        className="right-0 bg-gray-dark py-2.5 px-4 rounded-r-lg cursor-pointer hover:bg-gray-medium transition h-full"
-        tabIndex={-1}
+        className="right-0 bg-gray-dark py-2.5 px-4 rounded-r-lg"
       >
         <Search />
-      </button>
+      </span>
       <ul
         role="listbox"
         aria-labelledby="dropdown"

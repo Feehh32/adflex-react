@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatNumber } from "../../utils/formatters";
 import PropTypes from "prop-types";
-import CardVisual from "./CardVisual";
+import CardVisual from "../../components/UI/CardVisual";
 
 const ClientsArea = ({ allClients }) => {
   return (
@@ -31,7 +31,7 @@ const ClientsArea = ({ allClients }) => {
               <CardVisual
                 as={Link}
                 to={`/clients/${client.id}`}
-                className="flex flex-wrap gap-4 justify-between items-center focus:outline-none focus:ring-2 focus:ring-prim1 focus:ring-offset-2 focus:rounded-lg hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
+                className="flex flex-wrap gap-4 justify-between items-center focus-visible hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
               >
                 <h3 className="text-xl font-secondary font-bold w-full">
                   {client.name}

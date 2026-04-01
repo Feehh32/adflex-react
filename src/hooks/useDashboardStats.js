@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
+import { useGlobalError } from "./useGlobalError";
 
 export const useDashboardStats = () => {
   const [stats, setStats] = useState({
@@ -12,6 +13,8 @@ export const useDashboardStats = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { setGlobalError } = useGlobalError();
 
   const fetchDashboardStats = async () => {
     try {
@@ -30,6 +33,8 @@ export const useDashboardStats = () => {
         });
     } catch (err) {
       setError(err.message);
+      console.error(err);
+      setGlobalError("Erro ao carregar dados. Verifique sua conexão.");
     } finally {
       setLoading(false);
     }

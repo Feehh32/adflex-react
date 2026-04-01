@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatRelativeDate, formatCurrency } from "../../utils/formatters";
-import CardVisual from "./CardVisual";
+import CardVisual from "../../components/UI/CardVisual";
 import PropTypes from "prop-types";
 
 const LastOs = ({ lastOs }) => {
@@ -31,7 +31,7 @@ const LastOs = ({ lastOs }) => {
             <li key={os.id}>
               <CardVisual
                 as={Link}
-                className="flex items-center gap-2 flex-wrap focus:outline-none focus:ring-2 focus:ring-prim1 focus:ring-offset-2 focus:rounded-lg hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
+                className="flex items-center gap-2 flex-wrap focus-visible hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
                 to={`/service-orders/${os.id}`}
               >
                 <span

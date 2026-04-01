@@ -1,6 +1,6 @@
 import { formatCurrency, formatNumber } from "../../utils/formatters";
 import PropTypes from "prop-types";
-import CardVisual from "./CardVisual";
+import CardVisual from "../../components/UI/CardVisual";
 
 const MonthlyRevenue = ({ totalOS, monthlyRevenue }) => {
   if (totalOS === 0)

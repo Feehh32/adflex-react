@@ -1,12 +1,22 @@
 import { Outlet } from "react-router-dom";
 import ErrorScreen from "../components/UI/ErrorScreen";
-import { useDashboardStats } from "../hooks/useDashboardStats";
 import Sidebar from "../components/sidebar/Sidebar";
+import { useGlobalError } from "../hooks/useGlobalError";
 
 const MainLayout = () => {
-  const { error, refetch } = useDashboardStats();
+  const { error, clearGlobalError } = useGlobalError();
+  if (error) {
+    return (
+      <ErrorScreen
+        message={error}
+        onRetry={() => {
+          clearGlobalError();
+          window.location.reload();
+        }}
+      />
+    );
+  }
 
-  if (error) return <ErrorScreen message={error} onRetry={refetch} />;
   return (
     <div className="md:flex min-h-screen">
       <Sidebar />

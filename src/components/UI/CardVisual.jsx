@@ -1,4 +1,3 @@
-import React from "react";
 import bgInnerHome from "../../assets/img/bgInnerHome.jpg";
 
 const CardVisual = ({

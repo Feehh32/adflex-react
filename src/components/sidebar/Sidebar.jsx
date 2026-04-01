@@ -38,7 +38,7 @@ const Sidebar = () => {
           <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
           <Link
             to="/"
-            className=" sidebar-focus"
+            className=" focus-visible"
             onClick={() => setIsOpen(false)}
             aria-label="Página inicial"
           >
@@ -50,7 +50,7 @@ const Sidebar = () => {
             <li className="border-b border-gray-dark pt-8 pb-8 flex flex-col gap-5">
               <Link
                 to="/"
-                className="flex items-center gap-2 pl-8 hover:text-prim1 transition-colors duration-300 ease-in-out sidebar-focus"
+                className="flex w-fit items-center gap-2 ml-8 hover:text-prim1 transition-colors duration-300 ease-in-out focus-visible"
                 onClick={() => setIsOpen(false)}
               >
                 <HomeIcon aria-hidden="true" />
@@ -59,7 +59,7 @@ const Sidebar = () => {
 
               <Link
                 to="/service-orders/new"
-                className="sidebar-focus flex items-center gap-2 pl-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
+                className="w-fit focus-visible flex items-center gap-2 ml-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
                 onClick={() => setIsOpen(false)}
               >
                 <ServiceOrderIcon aria-hidden="true" />
@@ -69,7 +69,7 @@ const Sidebar = () => {
             <li className="border-b border-gray-dark pt-8 pb-8 flex flex-col gap-5">
               <Link
                 to="/clients/new"
-                className="sidebar-focus flex items-center gap-2 pl-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
+                className="focus-visible w-fit flex items-center gap-2 ml-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
                 onClick={() => setIsOpen(false)}
               >
                 <AddIcon className="w-6 h-6" aria-hidden="true" />
@@ -78,7 +78,7 @@ const Sidebar = () => {
 
               <Link
                 to="/sales-summary"
-                className="sidebar-focus flex items-center gap-2 pl-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
+                className="focus-visible w-fit flex items-center gap-2 ml-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
                 onClick={() => setIsOpen(false)}
               >
                 <SalesSummaryIcon className="w-6 h-6" aria-hidden="true" />
@@ -87,7 +87,7 @@ const Sidebar = () => {
 
               <Link
                 to="/monthly-sales"
-                className="sidebar-focus flex items-center gap-2 pl-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
+                className="focus-visible w-fit flex items-center gap-2 ml-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
                 onClick={() => setIsOpen(false)}
               >
                 <MonthlySalesIcon className="w-6 h-6" aria-hidden="true" />
@@ -96,9 +96,9 @@ const Sidebar = () => {
             </li>
           </ul>
         </nav>
-        <div className="flex pl-8 pr-8 pt-2 justify-between items-center text-gray-medium">
+        <div className="flex ml-8 pr-8 pt-2 justify-between items-center text-gray-medium">
           <button
-            className={`sidebar-focus flex items-center gap-2 p-2 rounded-md text-sm 
+            className={`focus-visible flex items-center gap-2 p-2 rounded-md text-sm 
               ${
                 canGoBack
                   ? "cursor-pointer hover:bg-gray-dark"
@@ -114,7 +114,7 @@ const Sidebar = () => {
             <span>Voltar</span>
           </button>
           <button
-            className={`sidebar-focus flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-dark rounded-md text-sm ${
+            className={`focus-visible flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-dark rounded-md text-sm ${
               canGoForward
                 ? "cursor-pointer hover:bg-gray-dark"
                 : "opacity-40 cursor-auto pointer-events-none"

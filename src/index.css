@@ -33,7 +33,7 @@ input[type="search"]::-webkit-search-decoration {
   --color-prim2: #e88100;
   --color-green-primary: #09330f;
   --color-green-secondary: #41c64f;
-  --color-red-delete: #f01111;
+  --color-red: #ed4337;
 
   /* Fonts */
   --font-primary: "Roboto", sans-serif;
@@ -42,6 +42,6 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 /* utilitary class */
-.sidebar-focus {
-  @apply flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-prim1 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-darker transition-colors rounded-md;
+.focus-visible {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-prim1 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-darker transition-colors rounded-md;
 }

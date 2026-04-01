@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatNumber, formatCurrency } from "../../utils/formatters";
 import PropTypes from "prop-types";
-import CardVisual from "./CardVisual";
+import CardVisual from "../../components/UI/CardVisual";
 
 const TopClients = ({ topClients }) => {
   return (
@@ -31,7 +31,7 @@ const TopClients = ({ topClients }) => {
             <li key={client.id}>
               <CardVisual
                 as={Link}
-                className="flex items-center gap-3 flex-wrap focus:outline-none focus:ring-2 focus:ring-prim1 focus:ring-offset-2 focus:rounded-lg hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
+                className="flex items-center gap-3 flex-wrap focus-visible hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
                 to={`/clients/${client.id}`}
               >
                 <span

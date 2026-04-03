@@ -20,9 +20,10 @@ const TopClients = ({ topClients }) => {
           <li className="col-span-4">
             <CardVisual className="h-49 flex justify-center items-center">
               <span className="text-gray-medium m-auto block text-center">
-                Nenhum cliente cadastrado. Cadastre clientes para visualizar o
-                TOP 3.
+                Nenhuma atividade registrada neste mês ainda. Os dados
+                aparecerão assim que novas ordens forem criadas.
               </span>
+              <span className="text-gray-medium m-auto block text-center"></span>
             </CardVisual>
           </li>
         )}

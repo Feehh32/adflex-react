@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Home from "./pages/home/Home.jsx";
 import ClientPage from "./pages/clients/ClientPage.jsx";
-import ClientForm from "./pages/ClientForm.jsx";
+import ClientFormPage from "./pages/clientForm/ClientFormPage.jsx";
 import ServiceOrderPage from "./pages/ServiceOrderPage.jsx";
 import ServiceOrderForm from "./pages/ServiceOrderForm.jsx";
 import MonthlySales from "./pages/MonthlySales.jsx";
@@ -19,8 +19,8 @@ const App = () => {
           <Route index element={<Home />} />
           {/* Clients */}
           <Route path="/clients/:clientId" element={<ClientPage />} />
-          <Route path="/clients/new" element={<ClientForm />} />
-          <Route path="/clients/:clientId/edit" element={<ClientForm />} />
+          <Route path="/clients/new" element={<ClientFormPage />} />
+          <Route path="/clients/:clientId/edit" element={<ClientFormPage />} />
 
           {/* Service Orders */}
           <Route

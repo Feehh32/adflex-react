@@ -3,18 +3,6 @@ import PropTypes from "prop-types";
 import CardVisual from "../../components/UI/CardVisual";
 
 const MonthlyRevenue = ({ totalOS, monthlyRevenue }) => {
-  if (totalOS === 0)
-    return (
-      <CardVisual
-        as="section"
-        className="mt-8 h-41.25 flex justify-center items-center"
-      >
-        <span className="text-gray-medium">
-          Atualizado até {new Date().toLocaleDateString()}
-        </span>
-      </CardVisual>
-    );
-
   return (
     <CardVisual
       as="section"

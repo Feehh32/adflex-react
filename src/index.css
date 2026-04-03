@@ -29,6 +29,7 @@ input[type="search"]::-webkit-search-decoration {
   --color-gray-medium: #a49fa8;
   --color-gray-darker: #1b1c1d;
   --color-gray-dark: #38393e;
+  --color-gray-input: #27282b;
   --color-prim1: #ffb75e;
   --color-prim2: #e88100;
   --color-green-primary: #09330f;

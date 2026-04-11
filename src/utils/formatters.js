@@ -60,3 +60,21 @@ export const formatMonthYear = (dateString) => {
 
   return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 };
+
+export const formatPhone = (phone) => {
+  if (!phone) return "";
+
+  // remove tudo que não é número
+  const cleaned = phone.replace(/\D/g, "");
+
+  // celphone (11 dígitos)
+  if (cleaned.length === 11) {
+    return cleaned.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+  }
+
+  // fixed phone (10 dígitos)
+  if (cleaned.length === 10) {
+    return cleaned.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+  }
+  return phone;
+};

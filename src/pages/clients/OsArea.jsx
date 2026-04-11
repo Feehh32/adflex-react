@@ -4,6 +4,7 @@ import SearchOs from "./SearchOs";
 import PropTypes from "prop-types";
 
 const OsArea = ({
+  isDeleted,
   orders,
   nextPage,
   prevPage,
@@ -61,14 +62,14 @@ const OsArea = ({
         <div className="flex gap-2">
           <button
             onClick={prevPage}
-            disabled={pagination.page === 1}
+            disabled={pagination.page === 1 || isDeleted}
             className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"
           >
             Anterior
           </button>
           <button
             onClick={nextPage}
-            disabled={pagination.page === pagination.total_pages}
+            disabled={pagination.page === pagination.total_pages || isDeleted}
             className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"
           >
             Próximo
@@ -87,6 +88,7 @@ OsArea.propTypes = {
   isSearching: PropTypes.bool.isRequired,
   search: PropTypes.string.isRequired,
   setSearch: PropTypes.func.isRequired,
+  isDeleted: PropTypes.bool.isRequired,
 };
 
 export default OsArea;

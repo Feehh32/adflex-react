@@ -9,36 +9,67 @@ import ServiceOrderForm from "./pages/ServiceOrderForm.jsx";
 import MonthlySales from "./pages/MonthlySales.jsx";
 import SalesSummary from "./pages/SalesSummary.jsx";
 
+import { Toaster } from "react-hot-toast";
 import GlobalErrorProvider from "./context/GlobalErrorProvider.jsx";
 
 const App = () => {
   return (
-    <GlobalErrorProvider>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route index element={<Home />} />
-          {/* Clients */}
-          <Route path="/clients/:clientId" element={<ClientPage />} />
-          <Route path="/clients/new" element={<ClientFormPage />} />
-          <Route path="/clients/:clientId/edit" element={<ClientFormPage />} />
+    <>
+      <Toaster
+        position="center-bottom"
+        toastOptions={{
+          className:
+            "bg-gray-darker text-light-gray border border-gray-dark shadow-2xl font-secondary",
+          duration: 2000,
+          style: {
+            background: "#1a1a1a",
+            color: "#f3f4f6",
+            border: "1px solid #374151",
+          },
+          success: {
+            iconTheme: {
+              primary: "#C5A47E",
+              secondary: "#1a1a1a",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "#ef4444",
+              secondary: "#1a1a1a",
+            },
+          },
+        }}
+      />
+      <GlobalErrorProvider>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route index element={<Home />} />
+            {/* Clients */}
+            <Route path="/clients/:clientId" element={<ClientPage />} />
+            <Route path="/clients/new" element={<ClientFormPage />} />
+            <Route
+              path="/clients/:clientId/edit"
+              element={<ClientFormPage />}
+            />
 
-          {/* Service Orders */}
-          <Route
-            path="/service-orders/:clientId"
-            element={<ServiceOrderPage />}
-          />
-          <Route path="/service-orders/new" element={<ServiceOrderForm />} />
-          <Route
-            path="/service-orders/clientId"
-            element={<ServiceOrderForm />}
-          />
+            {/* Service Orders */}
+            <Route
+              path="/service-orders/:clientId"
+              element={<ServiceOrderPage />}
+            />
+            <Route path="/service-orders/new" element={<ServiceOrderForm />} />
+            <Route
+              path="/service-orders/clientId"
+              element={<ServiceOrderForm />}
+            />
 
-          {/* Reports */}
-          <Route path="/monthly-sales" element={<MonthlySales />} />
-          <Route path="/sales-summary" element={<SalesSummary />} />
-        </Route>
-      </Routes>
-    </GlobalErrorProvider>
+            {/* Reports */}
+            <Route path="/monthly-sales" element={<MonthlySales />} />
+            <Route path="/sales-summary" element={<SalesSummary />} />
+          </Route>
+        </Routes>
+      </GlobalErrorProvider>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import ChargeIcon from "../../assets/icons/charge-icon.svg?react";
 import ChargeIconGray from "../../assets/icons/charge-gray-icon.svg?react";
 import InputField from "../../components/UI/InputField";
 
-const ChargeSection = ({ formData, handleChange }) => {
+const ChargeSection = ({ register, errors }) => {
   return (
     <section
       className="flex flex-col gap-4 bg-gray-darker p-4 rounded-lg shadow-lg border border-gray-dark"
@@ -31,12 +31,13 @@ const ChargeSection = ({ formData, handleChange }) => {
           label="Cobrança"
           name="charge"
           id="charge"
-          type="number"
+          type="text"
+          autoComplete="off"
           required
           placeholder="Digite o valor da cobrança"
           Icon={ChargeIconGray}
-          value={formData.charge}
-          onChange={handleChange}
+          register={register}
+          error={errors.charge}
         />
       </div>
     </section>
@@ -44,11 +45,8 @@ const ChargeSection = ({ formData, handleChange }) => {
 };
 
 ChargeSection.propTypes = {
-  formData: PropTypes.shape({
-    email_primary: PropTypes.string,
-    email_secondary: PropTypes.string,
-  }).isRequired,
-  handleChange: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default ChargeSection;

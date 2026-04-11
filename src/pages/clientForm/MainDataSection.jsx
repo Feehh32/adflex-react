@@ -3,7 +3,7 @@ import UserIcon from "../../assets/icons/user-icon.svg?react";
 import UserIconGray from "../../assets/icons/user-icon-gray.svg?react";
 import InputField from "../../components/UI/InputField";
 
-const MainDataSection = ({ formData, handleChange }) => {
+const MainDataSection = ({ register, errors }) => {
   return (
     <section
       as="section"
@@ -31,11 +31,13 @@ const MainDataSection = ({ formData, handleChange }) => {
           label="Nome"
           name="name"
           id="name"
+          autoComplete="name"
           required
           placeholder="Digite o nome do cliente"
           Icon={UserIconGray}
-          value={formData.name}
-          onChange={handleChange}
+          width="1/2"
+          register={register}
+          error={errors.name}
         />
       </div>
     </section>
@@ -43,11 +45,8 @@ const MainDataSection = ({ formData, handleChange }) => {
 };
 
 MainDataSection.propTypes = {
-  formData: PropTypes.shape({
-    email_primary: PropTypes.string,
-    email_secondary: PropTypes.string,
-  }).isRequired,
-  handleChange: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default MainDataSection;

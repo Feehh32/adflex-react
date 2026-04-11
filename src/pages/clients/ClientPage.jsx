@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "../../components/UI/Spinner";
 import ClientOverview from "./ClientOverview";
@@ -6,10 +6,17 @@ import ClientMetrics from "./ClientMetrics";
 import OsArea from "./OsArea";
 import { useClientPageData } from "../../hooks/useClientPageData";
 import useDebounce from "../../hooks/useDebounce";
+import ClientDeleteModal from "./ConfirmDeleteModal";
 
 const ClientPage = () => {
   const { clientId } = useParams();
   const [search, setSearch] = useState("");
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleOpenDeleteModal = () => setIsDeleteModalOpen(true);
+  const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
+  const handleDeleteSuccess = () => navigate("/");
 
   const debounceSearch = useDebounce(search, 500);
   const {
@@ -23,6 +30,8 @@ const ClientPage = () => {
     isSearching,
   } = useClientPageData(clientId, debounceSearch);
 
+  const isDeleted = !!client?.deleted_at;
+
   if (loading) return <Spinner title="Carregando a página do cliente" />;
 
   return (
@@ -34,8 +43,11 @@ const ClientPage = () => {
             <span className="text-prim1" aria-hidden="true">
               .
             </span>
+            {isDeleted && (
+              <span className="text-red text-[16px]"> (Desativado)</span>
+            )}
           </h1>
-          <ClientOverview client={client} />
+          <ClientOverview client={client} isDeleted={isDeleted} />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
           <OsArea
@@ -46,9 +58,22 @@ const ClientPage = () => {
             isSearching={isSearching}
             search={search}
             setSearch={setSearch}
+            isDeleted={isDeleted}
           />
-          <ClientMetrics metrics={metrics} />
+          <ClientMetrics
+            metrics={metrics}
+            onDeleteClick={handleOpenDeleteModal}
+            isDeleted={isDeleted}
+          />
         </div>
+        <ClientDeleteModal
+          isDeleted={isDeleted}
+          isOpen={isDeleteModalOpen}
+          onClose={handleCloseDeleteModal}
+          clientId={clientId}
+          clientName={client?.name}
+          onSuccess={handleDeleteSuccess}
+        />
       </div>
     </>
   );

@@ -27,12 +27,21 @@ const LastOs = ({ lastOs }) => {
           </li>
         )}
         {lastOs?.map((os) => {
+          const isClientDeleted = !!os.deleted_at;
           return (
             <li key={os.id}>
               <CardVisual
-                as={Link}
-                className="flex items-center gap-2 flex-wrap focus-visible hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
-                to={`/service-orders/${os.id}`}
+                as={isClientDeleted ? "div" : Link}
+                disabled
+                className={`
+                  flex items-center gap-2 flex-wrap transition duration-300 ease-in-out
+                  ${
+                    isClientDeleted
+                      ? "opacity-60 grayscale cursor-default"
+                      : "hover:scale-[1.01] hover:shadow-xl cursor-pointer"
+                  }
+                `}
+                to={!isClientDeleted ? `/service-orders/${os.id}` : undefined}
               >
                 <span
                   className="bg-gray-dark font-medium text-white rounded-sm p-1 flex items-center justify-center font-technical"
@@ -40,15 +49,26 @@ const LastOs = ({ lastOs }) => {
                 >
                   {os.code}
                 </span>
-                <h3
-                  className="flex-1 font-medium truncate"
-                  title={os.client_name}
-                >
-                  {os.client_name}
-                </h3>
+                <div className="flex-1 flex items-center gap-4 flex-wrap">
+                  <h3
+                    className={`font-medium truncate ${
+                      isClientDeleted ? "text-gray-medium" : ""
+                    }`}
+                    title={os.client_name}
+                  >
+                    {os.client_name}
+                  </h3>
+                  {isClientDeleted && (
+                    <span className="text-[10px] uppercase tracking-wide px-2 py-0.5 rounded bg-red/10 text-red/80 border border-red/20">
+                      desativado
+                    </span>
+                  )}
+                </div>
+
                 <span className="text-green-secondary font-bold mr-2">
                   {formatCurrency(os.total)}
                 </span>
+
                 <time
                   className="text-gray-medium text-sm w-full"
                   dateTime={os.created_at}

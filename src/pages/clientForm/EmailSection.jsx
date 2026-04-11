@@ -3,7 +3,7 @@ import MailIcon from "../../assets/icons/mail-icon.svg?react";
 import MailIconGray from "../../assets/icons/mail-icon-gray.svg?react";
 import InputField from "../../components/UI/InputField";
 
-const EmailsSection = ({ formData, handleChange }) => {
+const EmailsSection = ({ register, errors }) => {
   return (
     <section
       className="flex flex-col gap-4 bg-gray-darker p-4 rounded-lg shadow-lg border border-gray-dark"
@@ -35,12 +35,13 @@ const EmailsSection = ({ formData, handleChange }) => {
           name="email_primary"
           id="email_primary"
           type="email"
+          autoComplete="email"
           required
           placeholder="Digite o email do cliente"
-          value={formData.email_primary}
-          onChange={handleChange}
           Icon={MailIconGray}
-          width="w-full"
+          width="full"
+          register={register}
+          error={errors.email_primary}
         />
 
         <InputField
@@ -48,11 +49,12 @@ const EmailsSection = ({ formData, handleChange }) => {
           name="email_secondary"
           id="email_secondary"
           type="email"
+          autoComplete="email"
           placeholder="Digite o email do cliente (Opcional)"
-          value={formData.email_secondary}
-          onChange={handleChange}
           Icon={MailIconGray}
-          width="w-full"
+          width="full"
+          register={register}
+          error={errors.email_secondary}
         />
       </fieldset>
     </section>
@@ -60,11 +62,8 @@ const EmailsSection = ({ formData, handleChange }) => {
 };
 
 EmailsSection.propTypes = {
-  formData: PropTypes.shape({
-    email_primary: PropTypes.string,
-    email_secondary: PropTypes.string,
-  }).isRequired,
-  handleChange: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default EmailsSection;

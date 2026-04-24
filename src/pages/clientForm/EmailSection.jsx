@@ -39,7 +39,7 @@ const EmailsSection = ({ register, errors }) => {
           required
           placeholder="Digite o email do cliente"
           Icon={MailIconGray}
-          width="full"
+          width="w-full"
           register={register}
           error={errors.email_primary}
         />
@@ -52,7 +52,7 @@ const EmailsSection = ({ register, errors }) => {
           autoComplete="email"
           placeholder="Digite o email do cliente (Opcional)"
           Icon={MailIconGray}
-          width="full"
+          width="w-full"
           register={register}
           error={errors.email_secondary}
         />

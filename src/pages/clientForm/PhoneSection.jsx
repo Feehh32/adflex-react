@@ -43,7 +43,7 @@ const PhoneSection = ({ control, errors }) => {
               placeholder="(11) 98888-8888"
               autoComplete="tel"
               Icon={PhoneIconGrayPrimary}
-              width="full"
+              width="w-full"
               value={formatPhone(field.value) || ""}
               onChange={(e) => {
                 const rawValue = unformatPhone(e.target.value);
@@ -65,7 +65,7 @@ const PhoneSection = ({ control, errors }) => {
               placeholder="(11) 98888-8888 (Opcional)"
               autoComplete="tel"
               Icon={PhoneIconGray}
-              width="full"
+              width="w-full"
               value={formatPhone(field.value) || ""}
               onChange={(e) => {
                 const rawValue = unformatPhone(e.target.value);

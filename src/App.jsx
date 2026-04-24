@@ -4,8 +4,8 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import Home from "./pages/home/Home.jsx";
 import ClientPage from "./pages/clients/ClientPage.jsx";
 import ClientFormPage from "./pages/clientForm/ClientFormPage.jsx";
-import ServiceOrderPage from "./pages/ServiceOrderPage.jsx";
-import ServiceOrderForm from "./pages/ServiceOrderForm.jsx";
+import OsPage from "./pages/OsPage.jsx";
+import OsFormPage from "./pages/OsForm/OsFormPage.jsx";
 import MonthlySales from "./pages/MonthlySales.jsx";
 import SalesSummary from "./pages/SalesSummary.jsx";
 
@@ -53,15 +53,9 @@ const App = () => {
             />
 
             {/* Service Orders */}
-            <Route
-              path="/service-orders/:clientId"
-              element={<ServiceOrderPage />}
-            />
-            <Route path="/service-orders/new" element={<ServiceOrderForm />} />
-            <Route
-              path="/service-orders/clientId"
-              element={<ServiceOrderForm />}
-            />
+            <Route path="/service-orders/:clientId" element={<OsFormPage />} />
+            <Route path="/service-orders/new" element={<OsFormPage />} />
+            <Route path="/service-order-page/:clientId" element={<OsPage />} />
 
             {/* Reports */}
             <Route path="/monthly-sales" element={<MonthlySales />} />

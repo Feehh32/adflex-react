@@ -8,7 +8,7 @@ const InputField = ({
   required = false,
   autoComplete,
   Icon,
-  width = "1/2",
+  width = "w-1/2",
   register,
   error,
   value,
@@ -25,7 +25,7 @@ const InputField = ({
         {label} {required && <span className="text-prim1">*</span>}
       </label>
       <div
-        className={`relative flex items-center w-full md:w-${width} focus-within:ring-2 focus-within:ring-prim1 rounded-lg border ${
+        className={`relative flex items-center w-full md:${width} focus-within:ring-2 focus-within:ring-prim1 rounded-lg border ${
           error ? "border-red" : "border-gray-dark"
         }  shadow-lg`}
       >
@@ -37,7 +37,6 @@ const InputField = ({
         )}
         <input
           type={type}
-          name={name}
           id={id}
           noValidate={true}
           autoComplete={autoComplete}
@@ -67,7 +66,7 @@ InputField.propTypes = {
   autoComplete: PropTypes.string,
   Icon: PropTypes.element,
   width: PropTypes.string,
-  register: PropTypes.object,
+  register: PropTypes.func,
   error: PropTypes.object,
   value: PropTypes.string,
   onChange: PropTypes.func,

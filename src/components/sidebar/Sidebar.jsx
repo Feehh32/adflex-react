@@ -32,7 +32,7 @@ const Sidebar = () => {
         id="sidebar-menu"
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } flex flex-col fixed md:static bg-gray-darker min-h-screen border-r border-gray-dark transition-transform duration-300 ease-in-out z-50 w-67.5 shadow-sm md:shadow-none md:translate-x-0`}
+        } flex flex-col fixed md:static bg-gray-darker min-h-screen border-r border-gray-dark transition-transform duration-300 ease-in-out z-50 w-67.5 shadow-sm md:shadow-none md:translate-x-0 print:hidden`}
       >
         <header className="p-8 border-b border-gray-dark inline-flex gap-4 items-center">
           <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />

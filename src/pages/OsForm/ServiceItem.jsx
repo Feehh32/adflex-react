@@ -31,7 +31,7 @@ const ServiceItem = ({
             onClick={onRemove}
             className=" bg-gray-input border border-gray-dark text-sm p-1 rounded-md hover:opacity-70 hover:text-gray-darker transition duration-300 ease-in-out cursor-pointer"
           >
-            <TrashIcon aria-hidden="true" className="w-4 h-4" />
+            <TrashIcon fill="#6a7282" aria-hidden="true" className="w-4 h-4" />
           </button>
         )}
       </div>
@@ -42,6 +42,7 @@ const ServiceItem = ({
           name={`services.${index}.service_name`}
           register={register}
           type="text"
+          width="w-full"
           required
           id={`service_name-${index}`}
           autoComplete="name"
@@ -54,6 +55,7 @@ const ServiceItem = ({
           register={register}
           type="text"
           required
+          width="w-full"
           id={`width-${index}`}
           autoComplete="off"
           error={serviceErrors.width}
@@ -65,6 +67,7 @@ const ServiceItem = ({
           register={register}
           type="text"
           required
+          width="w-full"
           id={`height-${index}`}
           autoComplete="off"
           error={serviceErrors.height}
@@ -76,18 +79,20 @@ const ServiceItem = ({
           register={register}
           type="text"
           required
+          width="w-full"
           id={`amount-${index}`}
           autoComplete="off"
           error={serviceErrors.amount}
         />
         <div className="flex gap-2 items-end md:col-span-4">
           <InputField
-            label={"Valor de orçamento"}
+            label="Valor de orçamento"
             placeholder="Digite o valor do orçamento"
             name={`services.${index}.budget_value`}
             register={register}
             type="text"
             id={`budget_value-${index}`}
+            width="w-full"
             autoComplete="off"
             error={serviceErrors.budget_value}
           />

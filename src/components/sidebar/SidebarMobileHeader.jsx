@@ -5,7 +5,7 @@ import HamburgerButton from "../UI/HamburguerButton";
 
 const SidebarMobileHeader = ({ onOpen }) => {
   return (
-    <div className="flex items-center justify-between bg-gray-darker border-b border-gray-dark px-4 py-3 md:hidden">
+    <div className="flex items-center justify-between bg-gray-darker border-b border-gray-dark px-4 py-3 md:hidden print:hidden">
       <HamburgerButton onClick={onOpen} />
       <Link
         to="/"

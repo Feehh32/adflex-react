@@ -7,7 +7,7 @@ const OsItem = ({ order }) => {
   return (
     <CardVisual
       as={Link}
-      to={`/service-orders/${order?.id}`}
+      to={`/service-order-page/${order?.id}`}
       className="border border-gray-dark rounded-md p-4 hover:scale-[1.01] transition  focus:ring-offset-gray-dark focus-visible flex flex-wrap md:grid md:grid-cols-[auto_1fr_100px] gap-4 items-center"
     >
       <span className="bg-gray-dark font-medium text-white rounded-sm flex px-2 py-1 font-technical">

@@ -41,7 +41,9 @@ const LastOs = ({ lastOs }) => {
                       : "hover:scale-[1.01] hover:shadow-xl cursor-pointer"
                   }
                 `}
-                to={!isClientDeleted ? `/service-orders/${os.id}` : undefined}
+                to={
+                  !isClientDeleted ? `/service-order-page/${os.id}` : undefined
+                }
               >
                 <span
                   className="bg-gray-dark font-medium text-white rounded-sm p-1 flex items-center justify-center font-technical"
@@ -49,7 +51,7 @@ const LastOs = ({ lastOs }) => {
                 >
                   {os.code}
                 </span>
-                <div className="flex-1 flex items-center gap-4 flex-wrap">
+                <div className="flex-1 flex items-center gap-4 flex-wrap min-w-0">
                   <h3
                     className={`font-medium truncate ${
                       isClientDeleted ? "text-gray-medium" : ""

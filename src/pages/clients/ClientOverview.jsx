@@ -4,7 +4,6 @@ import ContactItem from "./ContactItem";
 import MailIcon from "../../assets/icons/mail-icon.svg?react";
 import TelPrimaryIcon from "../../assets/icons/tel-primary-icon.svg?react";
 import TelSecondaryIcon from "../../assets/icons/tel-secondary-icon.svg?react";
-import AddOs from "../../assets/icons/add-os.svg?react";
 import Edit from "../../assets/icons/edit.svg?react";
 import PropTypes from "prop-types";
 
@@ -56,14 +55,14 @@ const ClientOverview = ({ client, isDeleted }) => {
             className={`${styleButton} cursor-not-allowed opacity-50`}
             disabled
           >
-            <Edit className="w-4 h-4" />
+            <Edit className="w-3 h-3" />
             Editar
           </button>
         </div>
       ) : (
         <div className="flex gap-6 flex-wrap mt-6">
           <Link to={`/service-orders/${client?.id}`} className={styleButton}>
-            <AddOs className="w-4 h-4" />
+            <span className="text-xl leading-none">+</span>
             Nova OS
           </Link>
           <Link to={`/clients/${client?.id}/edit`} className={styleButton}>

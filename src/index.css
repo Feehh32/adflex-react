@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: var(--font-primary);
   color: var(--color-text-primary);
@@ -56,4 +62,36 @@ input[type="search"]::-webkit-search-decoration {
 /* utilitary class */
 .focus-visible {
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-prim1 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-darker transition-colors rounded-md;
+}
+
+/* print rules */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  body {
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  table thead {
+    display: table-header-group;
+  }
+
+  table tfoot {
+    display: table-footer-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .avoid-break {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
 }

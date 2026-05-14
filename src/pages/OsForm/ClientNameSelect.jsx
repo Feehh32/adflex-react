@@ -19,7 +19,7 @@ const ClientNameSelect = ({ error, clients, clientIdFromUrl, register }) => {
       >
         <AddClientNameIcon className="w-6 h-6 absolute left-3 opacity-50" />
         <select
-          {...register("client_id")}
+          {...register("client_id", { valueAsNumber: true })}
           id="clientName"
           autoComplete="off"
           className={`w-full bg-gray-input rounded-lg py-2 px-4 text-text-primary placeholder:text-gray-medium focus:outline-none transition pl-10 ${
@@ -38,7 +38,7 @@ const ClientNameSelect = ({ error, clients, clientIdFromUrl, register }) => {
       </div>
       {error.client_id && (
         <span className="text-xs text-red">
-          {error.message || "Preencha o campo corretamente"}
+          {error.client_id.message || "Preencha o campo corretamente"}
         </span>
       )}
     </div>

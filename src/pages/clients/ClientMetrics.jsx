@@ -33,7 +33,7 @@ const ClientMetrics = ({ metrics, onDeleteClick, isDeleted }) => {
             className="focus-visible w-full flex items-center justify-center gap-2 py-2 rounded-md border-2 border-red text-red transition duration-300 ease-in-out hover:text-white  hover:bg-red cursor-pointer shadow-md font-bold"
             onClick={onDeleteClick}
           >
-            <DeleteIcon aria-hidden="true" className="w-4 h-4" />
+            <DeleteIcon aria-hidden="true" className="w-3 h-3" />
             Excluir cliente
           </button>
         </div>

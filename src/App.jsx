@@ -7,7 +7,7 @@ import ClientFormPage from "./pages/clientForm/ClientFormPage.jsx";
 import OsPage from "./pages/OsPage/OsPage.jsx";
 import OsFormPage from "./pages/OsForm/OsFormPage.jsx";
 import MonthlySales from "./pages/MonthlySales.jsx";
-import SalesSummary from "./pages/SalesSummary.jsx";
+import SalesSummary from "./pages/salesSummary/SalesSummary.jsx";
 
 import { Toaster } from "react-hot-toast";
 import GlobalErrorProvider from "./context/GlobalErrorProvider.jsx";

@@ -31,7 +31,7 @@ const ClientsArea = ({ allClients }) => {
               <CardVisual
                 as={Link}
                 to={`/clients/${client.id}`}
-                className="flex flex-wrap gap-4 justify-between items-center focus-visible hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark"
+                className="flex flex-wrap gap-4 justify-between items-center focus-visible hover:scale-[1.01] hover:shadow-xl transition duration-300 ease-in-out focus:ring-offset-gray-dark min-h-40"
               >
                 <h3 className="text-xl font-secondary font-bold w-full">
                   {client.name}

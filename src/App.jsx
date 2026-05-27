@@ -6,7 +6,7 @@ import ClientPage from "./pages/clients/ClientPage.jsx";
 import ClientFormPage from "./pages/clientForm/ClientFormPage.jsx";
 import OsPage from "./pages/OsPage/OsPage.jsx";
 import OsFormPage from "./pages/OsForm/OsFormPage.jsx";
-import MonthlySales from "./pages/MonthlySales.jsx";
+import MonthlyClientSales from "./pages/monthlyClientSales/MonthlyClientSales.jsx";
 import SalesSummary from "./pages/salesSummary/SalesSummary.jsx";
 
 import { Toaster } from "react-hot-toast";
@@ -58,7 +58,10 @@ const App = () => {
             <Route path="/service-order-page/:osId" element={<OsPage />} />
 
             {/* Reports */}
-            <Route path="/monthly-sales" element={<MonthlySales />} />
+            <Route
+              path="/monthly-client-sales"
+              element={<MonthlyClientSales />}
+            />
             <Route path="/sales-summary" element={<SalesSummary />} />
           </Route>
         </Routes>

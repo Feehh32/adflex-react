@@ -12,7 +12,7 @@ export const useSalesSummary = () => {
       setLoading(true);
 
       const data = await getSalesSummary(month, year);
-      console.log(data);
+
       setSalesSummary(data);
     } catch (err) {
       setGlobalError(err.message);

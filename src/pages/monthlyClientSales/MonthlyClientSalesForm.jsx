@@ -1,12 +1,23 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import AddClientNameIcon from "../../assets/icons/add-client-name.svg?react";
 import Calendar from "../../assets/icons/calendar.svg?react";
 import ButtonSpinner from "../../components/UI/ButtonSpinner";
+import Spinner from "../../components/UI/Spinner";
 
-const SalesSummaryForm = ({ onSubmit, loading }) => {
+const MonthlyClientSalesForm = ({
+  onSubmit,
+  loading,
+  clients,
+  loadingClients,
+}) => {
   const currentDate = new Date();
+
   const [month, setMonth] = useState(currentDate.getMonth() + 1);
   const [year, setYear] = useState(currentDate.getFullYear());
+  const [client, setClient] = useState("");
+
+  const [clientError, setClientError] = useState(null);
 
   const preSelectedYear = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, i) => preSelectedYear - i);
@@ -27,17 +38,70 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await onSubmit(Number(month), Number(year));
+    setClientError("");
+
+    if (!client) {
+      setClientError("Selecione um cliente");
+      return;
+    }
+
+    await onSubmit(client, Number(month), Number(year));
   };
+
+  if (loadingClients) {
+    return <Spinner title="Carregando clientes..." />;
+  }
 
   return (
     <section className="flex flex-col gap-4 bg-gray-darker p-4 rounded-lg shadow-lg border border-gray-dark">
       <form
         onSubmit={handleSubmit}
-        className="flex gap-4 md:gap-6 md:flex-row flex-col items-start justify-between"
+        className="flex gap-4 md:gap-6 md:flex-row flex-col items-start min-h-24 justify-between"
       >
+        {/* client select */}
+        <div className="flex flex-col gap-2 md:w-1/3 w-full">
+          <label
+            htmlFor="monthly-sales-client"
+            className={`text-sm font-medium flex gap-2 ${
+              clientError && "text-red"
+            }`}
+          >
+            Cliente
+            <span className="text-prim1">*</span>
+          </label>
+          <div
+            className={`relative flex items-center w-full md:w-full focus-within:ring-2 focus-within:ring-prim1 rounded-lg border  shadow-lg ${
+              clientError ? "border-red" : "border-gray-dark"
+            }`}
+          >
+            <AddClientNameIcon className="w-6 h-6 absolute left-3 opacity-50" />
+            <select
+              id="monthly-sales-client"
+              value={client}
+              onChange={(e) => setClient(e.target.value)}
+              autoComplete="off"
+              name="monthly-sales-client"
+              className={
+                "w-full bg-gray-input rounded-lg py-2 px-4 text-text-primary placeholder:text-gray-medium focus:outline-none transition pl-10"
+              }
+            >
+              <option value="" disabled>
+                Selecione um cliente
+              </option>
+              {clients.map((client) => (
+                <option key={client.id} value={client.id}>
+                  {client.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <span className="text-xs text-red">
+            {clientError && "Por favor, selecione um cliente!"}
+          </span>
+        </div>
+
         {/* month select */}
-        <div className="flex flex-col gap-2 md:w-1/2 w-full">
+        <div className="flex flex-col gap-2 md:w-1/4 w-full">
           <label
             htmlFor="summary-month"
             className={`text-sm font-medium flex gap-2`}
@@ -67,7 +131,7 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
         </div>
 
         {/* year select */}
-        <div className="flex flex-col gap-2 md:w-1/2 w-full">
+        <div className="flex flex-col gap-2 md:w-1/5 w-full">
           <label
             htmlFor="summary-year"
             className={`text-sm font-medium flex gap-2`}
@@ -97,18 +161,20 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
         </div>
         <button
           type="submit"
-          className="focus-visible md:mt-7 py-2 px-4 font-semibold bg-prim2 border border-prim1 rounded-md shadow-md hover:scale-102 transition duration-300 ease-in-out text-gray-darker cursor-pointer w-full md:w-auto"
+          className="md:min-w-40 focus-visible md:mt-7 py-2 px-4 font-semibold bg-prim2 border border-prim1 rounded-md shadow-md hover:scale-102 transition duration-300 ease-in-out text-gray-darker cursor-pointer w-full md:w-auto flex items-center justify-center"
         >
-          {loading ? <ButtonSpinner /> : "Buscar"}
+          {loading ? <ButtonSpinner /> : "Gerar fechamento"}
         </button>
       </form>
     </section>
   );
 };
 
-SalesSummaryForm.propTypes = {
+MonthlyClientSalesForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  clients: PropTypes.array.isRequired,
+  loadingClients: PropTypes.bool.isRequired,
 };
 
-export default SalesSummaryForm;
+export default MonthlyClientSalesForm;

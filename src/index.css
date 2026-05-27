@@ -77,6 +77,83 @@ input[type="search"]::-webkit-search-decoration {
     print-color-adjust: exact;
   }
 
+  .sales-summary-screen {
+    display: none !important;
+  }
+
+  .sales-summary-print {
+    display: flex !important;
+  }
+
+  .monthly-sales-screen {
+    display: none !important;
+  }
+
+  .monthly-sales-print {
+    display: block !important;
+  }
+
+  .monthly-sales-doc {
+    width: 100% !important;
+    gap: 18px !important;
+    background: white !important;
+    color: #111827 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .monthly-sales-doc * {
+    color: #111827 !important;
+  }
+
+  .monthly-doc-header,
+  .monthly-closing {
+    border-color: #d1d5db !important;
+  }
+
+  .monthly-doc-info-table td,
+  .monthly-orders-table th,
+  .monthly-orders-table td {
+    border-color: #d1d5db !important;
+  }
+
+  .monthly-doc-info-table td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .monthly-orders-cards {
+    display: none !important;
+  }
+
+  .monthly-orders-table {
+    display: table !important;
+  }
+
+  .monthly-orders-table th {
+    border-bottom: 1px solid #9ca3af !important;
+    font-weight: 700 !important;
+    padding: 8px 10px !important;
+    text-transform: uppercase !important;
+    font-size: 11px !important;
+  }
+
+  .monthly-orders-table td {
+    border-bottom: 1px solid #e5e7eb !important;
+    padding: 8px 10px !important;
+  }
+
+  .monthly-closing-row {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  .monthly-closing-row:last-child span:last-child {
+    font-size: 24px !important;
+  }
+
   table thead {
     display: table-header-group;
   }

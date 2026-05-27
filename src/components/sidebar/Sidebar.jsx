@@ -86,7 +86,7 @@ const Sidebar = () => {
               </Link>
 
               <Link
-                to="/monthly-sales"
+                to="/monthly-client-sales"
                 className="focus-visible w-fit flex items-center gap-2 ml-8 hover:text-prim1 transition-colors duration-300 ease-in-out"
                 onClick={() => setIsOpen(false)}
               >

@@ -34,7 +34,7 @@ const LastOs = ({ lastOs }) => {
                 as={isClientDeleted ? "div" : Link}
                 disabled
                 className={`
-                  flex items-center gap-2 flex-wrap transition duration-300 ease-in-out
+                  flex items-center focus-visible gap-2 flex-wrap transition duration-300 ease-in-out
                   ${
                     isClientDeleted
                       ? "opacity-60 grayscale cursor-default"

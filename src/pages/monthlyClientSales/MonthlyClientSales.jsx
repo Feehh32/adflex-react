@@ -40,7 +40,7 @@ const MonthlyClientSales = () => {
               Visualize e imprima o fechamento mensal de um cliente.
             </span>
           </div>
-          {monthlyClientSales && (
+          {hasResults && (
             <button
               className="hidden md:flex focus-visible py-2 px-4 font-semibold bg-prim2 border border-prim1 rounded-md shadow-md hover:scale-102 transition duration-300 ease-in-out text-gray-darker cursor-pointer w-full md:w-auto items-center justify-center gap-2"
               type="button"

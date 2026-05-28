@@ -1,9 +1,13 @@
+import PropTypes from "prop-types";
 import SearchX from "../../assets/icons/search-x.svg?react";
 
-const SalesSummaryEmptyState = () => {
-  const month = new Date().toLocaleString("default", { month: "long" });
-  const year = new Date().getFullYear();
-
+const SalesSummaryEmptyState = ({ period }) => {
+  const newDate = new Date(period.year, period.month - 1, 1);
+  const downcaseMonthName = new Intl.DateTimeFormat("pt-BR", {
+    month: "long",
+  }).format(newDate);
+  const monthName =
+    downcaseMonthName.charAt(0).toUpperCase() + downcaseMonthName.slice(1);
   return (
     <section className="flex flex-col items-center justify-center gap-4 bg-gray-darker border border-gray-dark rounded-xl p-10 text-center shadow-md">
       <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gray-input border border-gray-dark">
@@ -16,11 +20,18 @@ const SalesSummaryEmptyState = () => {
         </h2>
 
         <p className="text-sm text-gray-medium max-w-md">
-          {` Não existem vendas registradas para ${month} de ${year}.`}
+          {` Não existem vendas registradas para ${monthName} de ${period.year}.`}
         </p>
       </div>
     </section>
   );
+};
+
+SalesSummaryEmptyState.propTypes = {
+  period: PropTypes.shape({
+    year: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    month: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  }).isRequired,
 };
 
 export default SalesSummaryEmptyState;

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout.jsx";
+import AuthLayout from "./layouts/AuthLayout.jsx";
 import Home from "./pages/home/Home.jsx";
 import ClientPage from "./pages/clients/ClientPage.jsx";
 import ClientFormPage from "./pages/clientForm/ClientFormPage.jsx";
@@ -8,9 +9,14 @@ import OsPage from "./pages/OsPage/OsPage.jsx";
 import OsFormPage from "./pages/OsForm/OsFormPage.jsx";
 import MonthlyClientSales from "./pages/monthlyClientSales/MonthlyClientSales.jsx";
 import SalesSummary from "./pages/salesSummary/SalesSummary.jsx";
+import LoginPage from "./pages/login/LoginPage.jsx";
 
 import { Toaster } from "react-hot-toast";
 import GlobalErrorProvider from "./context/GlobalErrorProvider.jsx";
+import AuthProvider from "./context/AuthProvider.jsx";
+
+import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
+import GuestRoute from "./components/auth/GuestRoute.jsx";
 
 const App = () => {
   return (
@@ -41,30 +47,52 @@ const App = () => {
         }}
       />
       <GlobalErrorProvider>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route index element={<Home />} />
-            {/* Clients */}
-            <Route path="/clients/:clientId" element={<ClientPage />} />
-            <Route path="/clients/new" element={<ClientFormPage />} />
+        <AuthProvider>
+          <Routes>
             <Route
-              path="/clients/:clientId/edit"
-              element={<ClientFormPage />}
-            />
+              element={
+                <ProtectedRoute>
+                  <MainLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Home />} />
+              {/* Clients */}
+              <Route path="/clients/:clientId" element={<ClientPage />} />
+              <Route path="/clients/new" element={<ClientFormPage />} />
+              <Route
+                path="/clients/:clientId/edit"
+                element={<ClientFormPage />}
+              />
 
-            {/* Service Orders */}
-            <Route path="/service-orders/:clientId" element={<OsFormPage />} />
-            <Route path="/service-orders/new" element={<OsFormPage />} />
-            <Route path="/service-order-page/:osId" element={<OsPage />} />
+              {/* Service Orders */}
+              <Route
+                path="/service-orders/:clientId"
+                element={<OsFormPage />}
+              />
+              <Route path="/service-orders/new" element={<OsFormPage />} />
+              <Route path="/service-order-page/:osId" element={<OsPage />} />
 
-            {/* Reports */}
-            <Route
-              path="/monthly-client-sales"
-              element={<MonthlyClientSales />}
-            />
-            <Route path="/sales-summary" element={<SalesSummary />} />
-          </Route>
-        </Routes>
+              {/* Reports */}
+              <Route
+                path="/monthly-client-sales"
+                element={<MonthlyClientSales />}
+              />
+              <Route path="/sales-summary" element={<SalesSummary />} />
+            </Route>
+            {/* Login */}
+            <Route element={<AuthLayout />}>
+              <Route
+                path="/login"
+                element={
+                  <GuestRoute>
+                    <LoginPage />
+                  </GuestRoute>
+                }
+              />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </GlobalErrorProvider>
     </>
   );

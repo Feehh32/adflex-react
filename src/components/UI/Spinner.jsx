@@ -6,7 +6,7 @@ const Spinner = ({ title }) => {
     <div>
       <h1 className="text-2xl md:text-[32px] font-secondary font-bold">
         {title}
-        <span className="text-prim1">.</span>
+        <span className="text-prim1">{title ? "." : ""}</span>
       </h1>
       <div className="flex items-center justify-center py-16">
         <div className="relative w-16 h-16">

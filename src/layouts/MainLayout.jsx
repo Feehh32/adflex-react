@@ -18,9 +18,9 @@ const MainLayout = () => {
   }
 
   return (
-    <div className="md:flex min-h-screen">
+    <div className="md:flex h-screen md:overflow-hidden">
       <Sidebar />
-      <main className="flex-1 p-4 lg:p-6 xl:py-8 xl:px-6">
+      <main className="flex-1 md:overflow-y-auto p-4 lg:p-6 xl:py-8 xl:px-6">
         <Outlet />
       </main>
     </div>

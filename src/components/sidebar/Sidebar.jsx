@@ -10,6 +10,7 @@ import MonthlySalesIcon from "../../assets/icons/monthly-sales.svg?react";
 import Arrow from "../../assets/icons/nav-arrow.svg?react";
 import HamburgerButton from "../UI/HamburguerButton";
 import SidebarMobileHeader from "./SidebarMobileHeader";
+import SidebarUserMenu from "./SidebarUserMenu";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const Sidebar = () => {
         id="sidebar-menu"
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } flex flex-col fixed md:static bg-gray-darker min-h-screen border-r border-gray-dark transition-transform duration-300 ease-in-out z-50 w-67.5 shadow-sm md:shadow-none md:translate-x-0 print:hidden`}
+        } flex flex-col fixed md:static bg-gray-darker border-r border-gray-dark transition-transform duration-300 ease-in-out z-50 w-67.5 shadow-sm md:shadow-none md:translate-x-0 print:hidden h-screen`}
       >
         <header className="p-8 border-b border-gray-dark inline-flex gap-4 items-center">
           <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
@@ -126,12 +127,15 @@ const Sidebar = () => {
             <Arrow className="text-gray-medium w-5 h-5" aria-hidden="true" />
           </button>
         </div>
-        <footer className="text-light-gray text-xs p-8 text-center mt-auto">
-          <p>
-            Desenvolvido por Fernando Pereira Alguns — direitos reservados —{" "}
-            {new Date().getFullYear()}
-          </p>
-        </footer>
+        <div className="mt-auto flex flex-col gap-4">
+          <SidebarUserMenu />
+          <footer className="text-light-gray text-xs p-8 text-center border-t border-gray-dark">
+            <p>
+              Desenvolvido por Fernando Pereira Alguns — direitos reservados —{" "}
+              {new Date().getFullYear()}
+            </p>
+          </footer>
+        </div>
       </aside>
       <SidebarMobileHeader onOpen={() => setIsOpen(true)} />
     </>

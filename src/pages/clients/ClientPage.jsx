@@ -5,6 +5,7 @@ import ClientOverview from "./ClientOverview";
 import ClientMetrics from "./ClientMetrics";
 import OsArea from "./OsArea";
 import { useClientPageData } from "../../hooks/useClientPageData";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 import useDebounce from "../../hooks/useDebounce";
 import ClientDeleteModal from "./ConfirmDeleteModal";
 
@@ -29,6 +30,8 @@ const ClientPage = () => {
     prevPage,
     isSearching,
   } = useClientPageData(clientId, debounceSearch);
+
+  usePageMetadata({ title: client?.name });
 
   const isDeleted = !!client?.deleted_at;
 

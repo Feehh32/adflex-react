@@ -1,7 +1,10 @@
 import Logo from "../../assets/logoColorida.svg?react";
 import LoginForm from "./LoginForm";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const LoginPage = () => {
+  usePageMetadata({ title: "Entrar" });
+
   return (
     <div className="flex flex-col gap-6">
       <section

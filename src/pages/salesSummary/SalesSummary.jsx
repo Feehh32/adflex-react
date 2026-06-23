@@ -7,10 +7,13 @@ import SalesSummaryPrint from "./SalesSummaryPrint";
 import PrintIcon from "../../assets/icons/print-icon.svg?react";
 import Spinner from "../../components/UI/Spinner";
 import { useSalesSummary } from "../../hooks/useSalesSummary";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const SalesSummary = () => {
   const { loading, salesSummary, fetchSalesSummary, hasResults, hasSearched } =
     useSalesSummary();
+
+  usePageMetadata({ title: "Resumo de vendas" });
 
   const [period, setPeriod] = useState(null);
   const handlePrint = () => window.print();

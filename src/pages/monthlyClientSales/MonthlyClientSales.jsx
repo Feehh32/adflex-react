@@ -6,8 +6,10 @@ import PrintIcon from "../../assets/icons/print-icon.svg?react";
 import Spinner from "../../components/UI/Spinner";
 import { useMonthlyClientSales } from "../../hooks/useMonthlyClientSales";
 import { useSelectClients } from "../../hooks/useSelectClients.js";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const MonthlyClientSales = () => {
+  usePageMetadata({ title: "Balanço Mensal" });
   const issuanceDate = new Date().toISOString();
   const handlePrint = () => window.print();
   const {

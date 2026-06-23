@@ -2,11 +2,16 @@ import OsDocument from "./OsDocument";
 import OsPageSidebar from "./OsPageSidebar";
 import { Link, useParams } from "react-router-dom";
 import { useServiceOrder } from "../../hooks/useServiceOrder";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 import Spinner from "../../components/UI/Spinner";
 
 const ServiceOrderPage = () => {
   const { osId: id } = useParams();
   const { loading, serviceOrder, fetchServiceOrder } = useServiceOrder(id);
+
+  usePageMetadata({
+    title: `O.S ${serviceOrder?.code} - ${serviceOrder.client.name}`,
+  });
 
   if (loading) return <Spinner title="Carregando ordem de serviço..." />;
   if (!serviceOrder)

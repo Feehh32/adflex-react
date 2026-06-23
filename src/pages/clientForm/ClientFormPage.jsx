@@ -4,12 +4,15 @@ import Spinner from "../../components/UI/Spinner";
 import ErrorScreen from "../../components/UI/ErrorScreen";
 import ClientForm from "./ClientForm.jsx";
 import { useClientById } from "../../hooks/useClientById";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const ClientFormPage = () => {
   const { clientId } = useParams();
   const { client, loading, error } = useClientById(clientId);
   const [pageLoading, setPageLoading] = useState(true);
   const isEditMode = !!client;
+
+  usePageMetadata({ title: isEditMode ? "Editar cliente" : "Novo cliente" });
 
   // Emulates a loading screen for UX purposes
   useEffect(() => {

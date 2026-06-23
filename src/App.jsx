@@ -10,6 +10,7 @@ import OsFormPage from "./pages/OsForm/OsFormPage.jsx";
 import MonthlyClientSales from "./pages/monthlyClientSales/MonthlyClientSales.jsx";
 import SalesSummary from "./pages/salesSummary/SalesSummary.jsx";
 import LoginPage from "./pages/login/LoginPage.jsx";
+import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
 
 import { Toaster } from "react-hot-toast";
 import GlobalErrorProvider from "./context/GlobalErrorProvider.jsx";
@@ -79,6 +80,8 @@ const App = () => {
                 element={<MonthlyClientSales />}
               />
               <Route path="/sales-summary" element={<SalesSummary />} />
+              {/* Not Found */}
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
             {/* Login */}
             <Route element={<AuthLayout />}>
@@ -90,6 +93,8 @@ const App = () => {
                   </GuestRoute>
                 }
               />
+              {/* Not Found */}
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </AuthProvider>

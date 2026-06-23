@@ -24,13 +24,13 @@ const SidebarUserMenu = () => {
 
   return (
     <div
-      className="relative flex items-center gap-2 justify-center"
+      className=" relative flex items-center gap-2 justify-center pl-4 w-fit"
       ref={menuRef}
     >
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="truncate flex-1 cursor-pointer hover:text-prim1 transition-colors duration-300 ease-in-out flex items-center gap-2 justify-center"
+        className="focus-visible truncate flex-1 cursor-pointer hover:text-prim1 transition-colors duration-300 ease-in-out flex items-center gap-2 justify-center"
       >
         <span
           className="w-6 h-6 rounded-full bg-gray-dark border border-gray-medium flex items-center justify-center"

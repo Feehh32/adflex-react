@@ -5,10 +5,13 @@ import LastOs from "./LastOs";
 import MonthlyRevenue from "./MonthlyRevenue";
 import TopClients from "./TopClients";
 import SearchClients from "./SearchClients";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const Home = () => {
   const { totalOS, monthlyRevenue, topClients, lastOs, allClients, loading } =
     useDashboardStats();
+
+  usePageMetadata({ title: "Home" });
 
   if (loading) return <Spinner title="Carregando dashboard" />;
 

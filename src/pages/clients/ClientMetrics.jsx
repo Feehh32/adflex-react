@@ -15,21 +15,22 @@ const ClientMetrics = ({ metrics, onDeleteClick, isDeleted }) => {
           </p>
         </div>
         <div className="bg-gray-darker rounded-md py-4 px-8 shadow-md w-full">
-          <span className="font-secondary text-gray-medium">
+          <p className="font-secondary text-gray-medium">
             Faturamento mensal
-          </span>
+          </p>
           <p className="text-xl font-semibold mt-1">
             {formatCurrency(metrics?.monthly_revenue)}
           </p>
         </div>
         <div className="bg-gray-darker rounded-md py-4 px-8 shadow-md w-full">
-          <span className="font-secondary text-gray-medium">Total de OS</span>
+          <p className="font-secondary text-gray-medium">Total de OS</p>
           <p className="text-xl font-semibold mt-1">{metrics?.total_orders}</p>
         </div>
       </div>
       {!isDeleted && (
         <div className="bg-gray-darker rounded-md py-4 px-8 shadow-md w-full">
           <button
+            type="button"
             className="focus-visible w-full flex items-center justify-center gap-2 py-2 rounded-md border-2 border-red text-red transition duration-300 ease-in-out hover:text-white  hover:bg-red cursor-pointer shadow-md font-bold"
             onClick={onDeleteClick}
           >

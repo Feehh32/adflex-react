@@ -7,11 +7,11 @@ const ChargeSection = ({ register, errors }) => {
   return (
     <section
       className="flex flex-col gap-4 bg-gray-darker p-4 rounded-lg shadow-lg border border-gray-dark"
-      aria-labelledby="charge-section-title "
+      aria-labelledby="charge-section-title"
     >
       <div className="flex items-center gap-4">
         <div className="p-2 rounded-lg border border-prim2/50 bg-gray-input inline-block">
-          <ChargeIcon className="w-6 h-6" />
+          <ChargeIcon className="w-6 h-6" aria-hidden="true" />
         </div>
         <div>
           <h2

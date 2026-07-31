@@ -15,6 +15,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    setFocus,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(loginSchema),
@@ -34,12 +35,17 @@ const LoginForm = () => {
       }
     } catch {
       setAuthError("Email ou senha inválidos");
+      setFocus("password");
     }
   };
 
   return (
     <section className="p-4 bg-gray-darker rounded-lg border border-gray-dark shadow-lg w-full max-w-md">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-4"
+        aria-busy={isSubmitting}
+      >
         <InputField
           label="Email"
           name="email"
@@ -66,12 +72,15 @@ const LoginForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
+          aria-disabled={isSubmitting}
           className="bg-prim2 hover:opacity-90 transition duration-300 ease-in-out py-2 rounded-md cursor-pointer text-gray-darker font-bold flex items-center justify-center"
         >
           {isSubmitting ? <ButtonSpiner /> : "Entrar"}
         </button>
         {authError && (
-          <p className="text-sm text-red text-center">{authError}</p>
+          <p className="text-sm text-red text-center" role="alert">
+            {authError}
+          </p>
         )}
       </form>
     </section>

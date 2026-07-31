@@ -38,9 +38,8 @@ const ClientPage = () => {
   if (loading) return <Spinner title="Carregando a página do cliente" />;
 
   return (
-    <>
       <div className="flex flex-col gap-6">
-        <div>
+        <header>
           <h1 className="text-2xl md:text-[32px] font-secondary font-bold mb-2">
             {client?.name}
             <span className="text-prim1" aria-hidden="true">
@@ -51,7 +50,7 @@ const ClientPage = () => {
             )}
           </h1>
           <ClientOverview client={client} isDeleted={isDeleted} />
-        </div>
+        </header>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
           <OsArea
             orders={orders}
@@ -78,7 +77,6 @@ const ClientPage = () => {
           onSuccess={handleDeleteSuccess}
         />
       </div>
-    </>
   );
 };
 

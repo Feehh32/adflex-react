@@ -17,8 +17,7 @@ const Home = () => {
 
   return (
     <>
-      {/* Home Header */}
-      <div className="flex gap-4 flex-wrap justify-between items-center">
+      <header className="flex gap-4 flex-wrap justify-between items-center">
         <h1 className="text-2xl md:text-[32px] font-secondary font-bold">
           Bem-vindo de volta
           <span className="text-prim1" aria-hidden="true">
@@ -26,11 +25,11 @@ const Home = () => {
           </span>
         </h1>
         <SearchClients allClients={allClients} />
-      </div>
-      {/* monthly Revenue */}
+      </header>
+
       <MonthlyRevenue totalOS={totalOS} monthlyRevenue={monthlyRevenue} />
-      {/* TOP 3 clients and last 3 os */}
-      <div className="flex gap-8 flex-col md:flex-row justify-between">
+
+      <div className="grid gap-8 grid-cols-1 xl:grid-cols-[2fr_2fr]">
         <TopClients topClients={topClients} />
         <LastOs lastOs={lastOs} />
       </div>

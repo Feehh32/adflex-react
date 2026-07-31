@@ -48,7 +48,7 @@ SalesSummaryItem.propTypes = {
     month: PropTypes.number.isRequired,
     year: PropTypes.number.isRequired,
   }).isRequired,
-  total: PropTypes.string.isRequired,
+  total: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 export default SalesSummaryItem;

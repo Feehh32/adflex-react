@@ -19,7 +19,7 @@ const OsDocument = ({ serviceOrder }) => {
 };
 
 OsDocument.propTypes = {
-  serviceOrder: PropTypes.object,
+  serviceOrder: PropTypes.object.isRequired,
 };
 
 export default OsDocument;

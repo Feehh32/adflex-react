@@ -9,9 +9,9 @@ const OsDocumentFooter = () => {
 
         {/* Desktop (lines to write) */}
         <div className="hidden md:block print:block mt-3 space-y-4">
-          <div className="border-b border-zinc-400" />
-          <div className="border-b border-zinc-400" />
-          <div className="border-b border-zinc-400" />
+          <div className="border-b border-zinc-400 h-6" />
+          <div className="border-b border-zinc-400 h-6" />
+          <div className="border-b border-zinc-400 h-6" />
         </div>
 
         {/* Mobile (simple blocks) */}

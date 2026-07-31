@@ -43,9 +43,12 @@ const DocHeader = ({ client, month, year, issuanceDate }) => {
                 <span className="block text-xs uppercase text-gray-medium tracking-wide">
                   Emissão
                 </span>
-                <span className="block text-base font-medium text-text-primary">
+                <time
+                  dateTime={issuanceDate}
+                  className="block text-base font-medium text-text-primary"
+                >
                   {formatLongDate(issuanceDate)}
-                </span>
+                </time>
               </td>
             </tr>
           </tbody>

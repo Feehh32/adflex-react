@@ -1,17 +1,18 @@
+import PropTypes from "prop-types";
 const HideMeasurementsSwitch = ({ register }) => {
   return (
-    <div className="flex items-center gap-3 select-none self-end focus-visible">
+    <label
+      htmlFor="hide-measurements"
+      className="flex items-center gap-3 cursor-pointer select-none self-end"
+    >
       <span className="text-gray-400 text-sm font-medium">
         Esconder medidas nos itens
       </span>
-      <label
-        htmlFor="hideMeasure"
-        className="relative inline-flex items-center cursor-pointer"
-      >
+      <span className="relative inline-flex items-center">
         <input
-          id="hideMeasure"
+          id="hide-measurements"
           type="checkbox"
-          className="sr-only peer"
+          className="sr-only peer absolute "
           {...register("hide_measure")}
         />
         <div
@@ -28,10 +29,14 @@ const HideMeasurementsSwitch = ({ register }) => {
           after:h-4 after:w-4 after:transition-all 
           peer-checked:bg-prim2 after:duration-300
           peer-checked:after:bg-white border border-gray-medium"
-        ></div>
-      </label>
-    </div>
+        />
+      </span>
+    </label>
   );
+};
+
+HideMeasurementsSwitch.propTypes = {
+  register: PropTypes.func.isRequired,
 };
 
 export default HideMeasurementsSwitch;

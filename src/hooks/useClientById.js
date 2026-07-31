@@ -26,5 +26,10 @@ export const useClientById = (clientId) => {
     fetchClient();
   }, [clientId]);
 
-  return { client, loading, error };
+  const refetch = async () => {
+    setError(null);
+    await getClientById(clientId);
+  };
+
+  return { client, loading, error, refetch };
 };

@@ -20,7 +20,7 @@ const SalesSummaryEmptyState = ({ period }) => {
         </h2>
 
         <p className="text-sm text-gray-medium max-w-md">
-          {` Não existem vendas registradas para ${monthName} de ${period.year}.`}
+          Não existem vendas registradas para {monthName} de {period.year}.
         </p>
       </div>
     </section>

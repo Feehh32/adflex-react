@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useId, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useModalFocus } from "../../hooks/useModalFocus";
 
 const sizeClasses = {
   sm: "max-w-sm",
@@ -27,17 +28,10 @@ const BaseModal = ({
   const modalRef = useRef(null);
   const titleId = useId();
   const descriptionId = useId();
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const previousActiveElement = document.activeElement;
-    modalRef.current?.focus();
-
-    return () => {
-      previousActiveElement?.focus?.();
-    };
-  }, [isOpen]);
+  useModalFocus({
+    isOpen,
+    modalRef,
+  });
 
   useEffect(() => {
     if (!isOpen) return;
@@ -51,16 +45,17 @@ const BaseModal = ({
   }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen || !closeOnEsc) return;
+    if (!isOpen) return;
 
-    const handleEsc = (event) => {
-      if (event.key === "Escape") {
+    const handleKeydown = (event) => {
+      if (event.key === "Escape" && closeOnEsc) {
         onClose();
+        return;
       }
     };
 
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
+    document.addEventListener("keydown", handleKeydown);
+    return () => document.removeEventListener("keydown", handleKeydown);
   }, [closeOnEsc, isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -109,6 +104,7 @@ const BaseModal = ({
               <button
                 type="button"
                 onClick={onClose}
+                aria-hidden="true"
                 className="focus-visible flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-gray-medium transition hover:bg-gray-dark hover:text-light-gray cursor-pointer"
                 aria-label="Fechar modal"
               >
@@ -127,7 +123,7 @@ const BaseModal = ({
         )}
       </section>
     </div>,
-    document.body
+    document.body,
   );
 };
 

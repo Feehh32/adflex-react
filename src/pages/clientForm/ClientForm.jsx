@@ -37,11 +37,12 @@ const ClientForm = ({ client = null, isEditMode }) => {
   });
 
   useEffect(() => {
-    if (isEditMode)
+    if (isEditMode && client)
       reset({
         ...client,
-        charge: client.charge != null ? Number(client.charge).toFixed(2) : "",
+        charge: client?.charge != null ? Number(client.charge).toFixed(2) : "",
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [client, reset]);
 
   const { createClient, loading: creating } = useCreateClient();
@@ -64,11 +65,9 @@ const ClientForm = ({ client = null, isEditMode }) => {
       const result = await promise;
 
       const idToRedirect = isEditMode ? client.id : result.data.id;
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         navigate(`/clients/${idToRedirect}`);
       }, 2000);
-
-      return () => clearTimeout(timer);
     } catch (err) {
       if (err.field)
         setError(err.field, { type: "manual", message: err.message });
@@ -76,7 +75,12 @@ const ClientForm = ({ client = null, isEditMode }) => {
   };
   return (
     <div className="max-w-4xl">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-6"
+        aria-labelledby="client-form-title"
+        aria-busy={isLoading}
+      >
         <FormHeader
           register={register}
           errors={errors}
@@ -90,7 +94,7 @@ const ClientForm = ({ client = null, isEditMode }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="focus-visible px-4 py-2 rounded-lg bg-prim2 cursor-pointer text-gray-darker font-medium hover:opacity-90 transition min-w-32.5 flex justify-center items-center"
+            className="focus-visible px-4 py-2 rounded-lg bg-prim2 cursor-pointer text-gray-darker font-medium hover:opacity-90 transition min-w-32.5 flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
               <ButtonSpinner />

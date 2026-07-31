@@ -8,12 +8,16 @@ const SummarySection = () => {
     >
       <div className="flex items-center gap-4">
         <div className="p-2 rounded-lg border border-prim2/50 bg-gray-input inline-block">
-          <ChargeIcon aria-hidden="true" className="w-6 h-6" />
+          <ChargeIcon
+            aria-hidden="true"
+            focusable="false"
+            className="w-6 h-6"
+          />
         </div>
         <div>
           <h2
             className="text-lg md:text-xl text-light-gray font-secondary font-bold"
-            id="service-section-title"
+            id="summary-section-title"
           >
             Resumo
           </h2>

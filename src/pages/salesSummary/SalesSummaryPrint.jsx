@@ -21,9 +21,9 @@ const SalesSummaryPrint = ({ salesSummary, period }) => {
         <span className="text-sm">{formatSalesSummaryPeriod(period)}</span>
       </header>
 
-      <section className="grid grid-cols-2 gap-4 text-sm">
+      <div className="grid grid-cols-2 gap-4 text-sm">
         <div>
-          <strong>Total vendido:</strong>{" "}
+          <strong>Total vendido:</strong>
           {formatCurrency(salesSummary.company_total)}
         </div>
 
@@ -32,17 +32,20 @@ const SalesSummaryPrint = ({ salesSummary, period }) => {
         </div>
 
         <div>
-          <strong>Maior vendedor:</strong>{" "}
+          <strong>Cliente com maior faturamento:</strong>
           {salesSummary.top_client?.client_name}
         </div>
 
         <div>
-          <strong>Menor vendedor:</strong>{" "}
+          <strong>Cliente com menor faturamento:</strong>
           {salesSummary.lowest_client?.client_name}
         </div>
-      </section>
+      </div>
 
-      <table className="w-full border-collapse text-sm">
+      <table
+        className="w-full border-collapse text-sm"
+        aria-label="Resumo de vendas por cliente"
+      >
         <thead>
           <tr className="border-b">
             <th className="text-left py-2">Cliente</th>
@@ -84,7 +87,7 @@ SalesSummaryPrint.propTypes = {
         client_name: PropTypes.string.isRequired,
         total: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
           .isRequired,
-      })
+      }),
     ),
   }),
   period: PropTypes.shape({

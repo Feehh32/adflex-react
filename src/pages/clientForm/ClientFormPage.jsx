@@ -8,9 +8,9 @@ import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const ClientFormPage = () => {
   const { clientId } = useParams();
-  const { client, loading, error } = useClientById(clientId);
+  const { client, loading, error, refetch } = useClientById(clientId);
   const [pageLoading, setPageLoading] = useState(true);
-  const isEditMode = !!client;
+  const isEditMode = Boolean(clientId);
 
   usePageMetadata({ title: isEditMode ? "Editar cliente" : "Novo cliente" });
 
@@ -25,7 +25,7 @@ const ClientFormPage = () => {
   if (pageLoading || (clientId && loading)) {
     return <Spinner title="Carregando página..." />;
   }
-  if (error) return <ErrorScreen error={error} />;
+  if (error) return <ErrorScreen error={error} onRetry={refetch} />;
 
   return <ClientForm client={client} isEditMode={isEditMode} />;
 };

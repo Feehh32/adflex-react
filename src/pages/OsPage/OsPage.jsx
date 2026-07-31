@@ -6,11 +6,11 @@ import { usePageMetadata } from "../../hooks/usePageMetadata";
 import Spinner from "../../components/UI/Spinner";
 
 const ServiceOrderPage = () => {
-  const { osId: id } = useParams();
-  const { loading, serviceOrder, fetchServiceOrder } = useServiceOrder(id);
+  const { osId } = useParams();
+  const { loading, serviceOrder, fetchServiceOrder } = useServiceOrder(osId);
 
   usePageMetadata({
-    title: `O.S ${serviceOrder?.code} - ${serviceOrder.client.name}`,
+    title: `O.S ${serviceOrder?.code} - ${serviceOrder?.client.name}`,
   });
 
   if (loading) return <Spinner title="Carregando ordem de serviço..." />;
@@ -18,7 +18,7 @@ const ServiceOrderPage = () => {
     return (
       <section className="flex flex-col gap-6 bg-gray-darker p-4 rounded-lg justify-center items-center">
         <h1 className="text-2xl md:text-[32px] font-secondary font-bold">
-          O.S não encontrada
+          Ordem de Serviço não encontrada
         </h1>
 
         <p>A ordem de serviço solicitada não existe ou foi removida.</p>
@@ -35,7 +35,7 @@ const ServiceOrderPage = () => {
     <section className="flex flex-col gap-6">
       <div className="mb-2 print:hidden">
         <h1 className="text-2xl md:text-[32px] font-secondary font-bold">
-          O.S 001
+          O.S {serviceOrder.code}
           <span className="text-prim1" aria-hidden="true">
             .
           </span>

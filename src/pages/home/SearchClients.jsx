@@ -22,7 +22,7 @@ const SearchClients = ({ allClients }) => {
 
     return clients
       .filter((client) =>
-        client.name.toLowerCase().includes(debouncedSearch.toLowerCase())
+        client.name.toLowerCase().includes(debouncedSearch.toLowerCase()),
       )
       .slice(0, 5);
   }, [allClients, debouncedSearch]);
@@ -34,14 +34,14 @@ const SearchClients = ({ allClients }) => {
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setHighlightedIndex((prev) =>
-        prev < filteredClients.length - 1 ? prev + 1 : 0
+        prev < filteredClients.length - 1 ? prev + 1 : 0,
       );
     }
 
     if (e.key === "ArrowUp") {
       e.preventDefault();
       setHighlightedIndex((prev) =>
-        prev > 0 ? prev - 1 : filteredClients.length - 1
+        prev > 0 ? prev - 1 : filteredClients.length - 1,
       );
     }
 
@@ -90,12 +90,12 @@ const SearchClients = ({ allClients }) => {
 
   const displayValue =
     highlightedIndex >= 0
-      ? filteredClients[highlightedIndex]?.name ?? search
+      ? (filteredClients[highlightedIndex]?.name ?? search)
       : search;
   return (
     <div
       ref={searchRef}
-      className="flex w-full md:w-[40%] items-center focus-within:ring-2 focus-within:ring-prim1 rounded-lg border border-gray-dark relative"
+      className="flex w-full md:max-w-[40%] items-center focus-within:ring-2 focus-within:ring-prim1 rounded-lg border border-gray-dark relative"
     >
       <label htmlFor="client-search" className="sr-only">
         Buscar cliente pelo nome
@@ -119,6 +119,7 @@ const SearchClients = ({ allClients }) => {
         autoCorrect="off"
         autoCapitalize="none"
         role="combobox"
+        aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-controls="client-list"
         aria-autocomplete="list"
@@ -129,16 +130,19 @@ const SearchClients = ({ allClients }) => {
         }}
         onKeyDown={handleKeyDown}
       />
-      <span
-        type="button"
-        className="right-0 bg-gray-dark py-2.5 px-4 rounded-r-lg"
-      >
-        <Search />
+      <span className="right-0 bg-gray-dark py-2.5 px-4 rounded-r-lg">
+        <Search aria-hidden="true" focusable="false" />
       </span>
       <ul
         role="listbox"
-        aria-labelledby="dropdown"
         id="client-list"
+        aria-activedescendant={
+          highlightedIndex >= 0
+            ? `client-${filteredClients[highlightedIndex].id}`
+            : undefined
+        }
+        aria-label="Lista de clientes"
+        tabIndex="-1"
         spellCheck={false}
         className={`${
           isOpen && filteredClients?.length > 0 && debouncedSearch.length >= 2
@@ -149,6 +153,8 @@ const SearchClients = ({ allClients }) => {
         {filteredClients?.map((client, index) => (
           <li
             key={client.id}
+            id={`client-${client.id}`}
+            aria-selected={index === highlightedIndex}
             role="option"
             ref={(el) => (itemsRef.current[index] = el)}
             className={`${

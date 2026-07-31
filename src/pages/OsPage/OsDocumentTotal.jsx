@@ -19,6 +19,8 @@ const OsDocumentTotal = ({ total }) => {
   );
 };
 
-OsDocumentTotal.propTypes = { total: PropTypes.number };
+OsDocumentTotal.propTypes = {
+  total: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+};
 
 export default OsDocumentTotal;

@@ -10,22 +10,30 @@ const OsItem = ({ order }) => {
       to={`/service-order-page/${order?.id}`}
       className="border border-gray-dark rounded-md p-4 hover:scale-[1.01] transition  focus:ring-offset-gray-dark focus-visible flex flex-wrap md:grid md:grid-cols-[auto_1fr_100px] gap-4 items-center"
     >
-      <span className="bg-gray-dark font-medium text-white rounded-sm flex px-2 py-1 font-technical">
+      <p className="bg-gray-dark font-medium text-white rounded-sm flex px-2 py-1 font-technical">
         {`#${order?.code}`}
-      </span>
+      </p>
 
-      <span className="font-bold justify-self-center">
+      <time
+        dateTime={order?.created_at}
+        className="font-bold justify-self-center"
+      >
         {formatLongDate(order?.created_at)}
-      </span>
-      <span className="text-green-secondary justify-self-end">
+      </time>
+      <p className="text-green-secondary justify-self-end">
         {formatCurrency(order?.total)}
-      </span>
+      </p>
     </CardVisual>
   );
 };
 
 OsItem.propTypes = {
-  order: PropTypes.object,
+  order: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    code: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    total: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default OsItem;

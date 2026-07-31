@@ -11,7 +11,11 @@ const EmptyState = ({ clientName, period }) => {
   return (
     <section className="flex flex-col items-center justify-center gap-4 bg-gray-darker border border-gray-dark rounded-xl p-10 text-center shadow-md">
       <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gray-input border border-gray-dark">
-        <SearchX className="w-6 h-6 text-gray-medium" />
+        <SearchX
+          className="w-6 h-6 text-gray-medium"
+          aria-hidden="true"
+          focusable="false"
+        />
       </div>
 
       <div className="flex flex-col gap-2">

@@ -6,9 +6,9 @@ const DocumentClosing = ({ closing }) => {
     <section className="monthly-closing avoid-break border-t border-b border-gray-dark py-6">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-1">
-          <h3 className="text-lg font-semibold text-text-primary">
+          <h2 className="text-lg font-semibold text-text-primary">
             Fechamento do Período
-          </h3>
+          </h2>
 
           <p className="text-sm text-gray-medium">
             Consolidação financeira mensal

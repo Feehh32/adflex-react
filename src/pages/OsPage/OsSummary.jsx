@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { formatCurrency } from "../../utils/formatters";
 
 const OsSummary = ({ total, services }) => {
@@ -37,7 +38,7 @@ const OsSummary = ({ total, services }) => {
         <div className="flex justify-between items-center">
           <span className="text-light-gray/70">Preço base</span>
           <span className="font-medium">
-            {formatCurrency(services[0].unit_charge)}
+            {formatCurrency(services?.[0]?.unit_charge)}
           </span>
         </div>
         <div className="flex justify-between items-center">
@@ -62,6 +63,11 @@ const OsSummary = ({ total, services }) => {
       </div>
     </section>
   );
+};
+
+OsSummary.propTypes = {
+  total: PropTypes.number.isRequired,
+  services: PropTypes.array.isRequired,
 };
 
 export default OsSummary;

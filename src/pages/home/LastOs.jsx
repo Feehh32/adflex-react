@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 
 const LastOs = ({ lastOs }) => {
   return (
-    <section className="flex-2 h-full mt-8" aria-labelledby="last-os-title">
+    <section className="flex-2 h-full mt-8 " aria-labelledby="last-os-title">
       <h2
         className="text-xl text-light-gray font-secondary font-bold mb-4"
         id="last-os-title"
       >
         Últimas OS
-        <span className="text-prim1" area-hidden="true">
+        <span className="text-prim1" aria-hidden="true">
           .
         </span>
       </h2>
@@ -32,7 +32,7 @@ const LastOs = ({ lastOs }) => {
             <li key={os.id}>
               <CardVisual
                 as={isClientDeleted ? "div" : Link}
-                disabled
+                disabled={isClientDeleted}
                 className={`
                   flex items-center focus-visible gap-2 flex-wrap transition duration-300 ease-in-out
                   ${

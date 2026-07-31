@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 const OsDocumentMobile = ({ serviceOrder }) => {
   return (
-    <div className="px-4 py-6 space-y-6 bg-white">
+    <article className="px-4 py-6 space-y-6 bg-white">
       <OsDocumentHeader
         code={serviceOrder.code}
         document_date={serviceOrder.document_date}
@@ -25,12 +25,19 @@ const OsDocumentMobile = ({ serviceOrder }) => {
       />
       <OsDocumentTotal total={serviceOrder.total} />
       <OsDocumentFooter />
-    </div>
+    </article>
   );
 };
 
 OsDocumentMobile.propTypes = {
-  serviceOrder: PropTypes.object.isRequired,
+  serviceOrder: PropTypes.shape({
+    code: PropTypes.string.isRequired,
+    document_date: PropTypes.string.isRequired,
+    hide_measure: PropTypes.bool.isRequired,
+    total: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    client: PropTypes.object.isRequired,
+    services: PropTypes.array.isRequired,
+  }).isRequired,
 };
 
 export default OsDocumentMobile;

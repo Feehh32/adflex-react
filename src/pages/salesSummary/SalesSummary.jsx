@@ -82,8 +82,9 @@ const SalesSummary = () => {
           <SalesSummaryEmptyState period={period} />
         )}
       </div>
-
-      <SalesSummaryPrint salesSummary={salesSummary} period={period} />
+      {hasResults && (
+        <SalesSummaryPrint salesSummary={salesSummary} period={period} />
+      )}
     </div>
   );
 };

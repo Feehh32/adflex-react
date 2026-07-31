@@ -20,27 +20,35 @@ const OsDocumentClient = ({
         <h4 className="mt-2 text-lg font-bold text-black">{clientName}</h4>
         <div className="mt-2 flex md:gap-6 md:flex-row flex-col gap-1 print:flex-row print:gap-6">
           <p className="flex items-center gap-2 text-sm text-text-secondary break-all">
-            <Email aria-hidden="true" className="w-4 h-4" />
+            <Email aria-hidden="true" focusable="false" className="w-4 h-4" />
             {emailPrimary}
           </p>
 
           <p className="flex items-center gap-2 text-sm text-text-secondary">
-            <PrimaryTel aria-hidden="true" className="w-4 h-4" />
+            <PrimaryTel
+              aria-hidden="true"
+              focusable="false"
+              className="w-4 h-4"
+            />
             {formatPhone(phonePrimary)}
           </p>
         </div>
         <div className="mt-2 flex md:gap-6 md:flex-row flex-col gap-1 print:flex-row print:gap-6">
           {emailSecondary && emailSecondary !== emailPrimary && (
             <p className="flex items-center gap-2 text-sm text-text-secondary break-all">
-              <Email aria-hidden="true" className="w-4 h-4" />
-              {emailPrimary}
+              <Email aria-hidden="true" className="w-4 h-4" focusable="false" />
+              {emailSecondary}
             </p>
           )}
 
           {phoneSecondary && phoneSecondary !== phonePrimary && (
             <p className="flex items-center gap-2 text-sm text-text-secondary">
-              <PrimaryTel aria-hidden="true" className="w-4 h-4" />
-              {formatPhone(phonePrimary)}
+              <PrimaryTel
+                aria-hidden="true"
+                className="w-4 h-4"
+                focusable="false"
+              />
+              {formatPhone(phoneSecondary)}
             </p>
           )}
         </div>

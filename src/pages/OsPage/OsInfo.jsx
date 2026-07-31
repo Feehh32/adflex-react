@@ -13,10 +13,10 @@ const OsInfo = () => {
         INFORMAÇÕES
       </h2>
       <InfoIcon className="h-4 min-w-4 md:min-w-6 md:h-6" aria-hidden="true" />
-      <div>
+      <div className="flex flex-col gap-2">
         <p>Esta é uma visualização da ordem de serviço.</p>
 
-        <p>Utilize "Imprimir" para gerar o documento.</p>
+        <p>Utilize o botão Imprimir para gerar o documento.</p>
 
         <p className="text-light-gray/70">
           Apenas a data pode ser alterada. Os demais dados são fixos após

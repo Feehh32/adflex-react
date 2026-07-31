@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const HamburgerButton = ({ isOpen, onClick }) => {
+const HamburgerButton = ({ isOpen = false, onClick }) => {
   return (
     <button
       type="button"
@@ -18,11 +18,7 @@ const HamburgerButton = ({ isOpen, onClick }) => {
         items-center
         justify-center
         rounded-md
-        focus-visible:outline-none
-        focus-visible:ring-2
-        focus-visible:ring-prim1
-        focus-visible:ring-offset-2
-        focus-visible:ring-offset-gray-darker
+        focus-visible
       "
     >
       <span
@@ -51,7 +47,7 @@ const HamburgerButton = ({ isOpen, onClick }) => {
 };
 
 HamburgerButton.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
 };
 

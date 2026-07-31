@@ -11,7 +11,7 @@ const EmailsSection = ({ register, errors }) => {
     >
       <div className="flex items-center gap-4">
         <div className="p-2 rounded-lg border border-prim2/50 bg-gray-input inline-block">
-          <MailIcon className="w-6 h-6" />
+          <MailIcon className="w-6 h-6" aria-hidden="true" />
         </div>
 
         <div>
@@ -22,9 +22,9 @@ const EmailsSection = ({ register, errors }) => {
             Contatos - Emails
           </h2>
 
-          <span className="text-sm text-gray-medium">
+          <p className="text-sm text-gray-medium">
             Contatos de email do cliente.
-          </span>
+          </p>
         </div>
       </div>
 

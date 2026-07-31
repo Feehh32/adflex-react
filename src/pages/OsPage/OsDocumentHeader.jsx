@@ -9,20 +9,23 @@ const OsDocumentHeader = ({ code, document_date }) => {
     <header className="border-b border-gray-dark pb-6 font-technical">
       <div className="flex items-start flex-wrap gap-4 md:gap-6 justify-between md:justify-start">
         {/* Logo */}
-        <OsLogo className="w-16 h-16 md:w-22.5 md:h-22.5 order-first print:w-22.5 print:h-22.5" />
+        <OsLogo
+          className=" w-16 h-16 md:w-22.5 md:h-22.5 order-first print:w-22.5 print:h-22.5"
+          aria-hidden="true"
+        />
 
         {/* Info principal */}
         <div className="text-left flex-1 min-w-50">
-          <p className="font-semibold tracking-[0.2em] text-text-secondary">
+          <h2 className="font-semibold tracking-[0.2em] text-text-secondary">
             ORDEM DE SERVIÇO
-          </p>
+          </h2>
 
           <p className="mt-2 text-sm text-text-secondary font-semibold">
             {formatLongDate(document_date)}
           </p>
 
           <div className="flex flex-col md:flex-row gap-2 md:gap-6 mt-2 print:flex-row print:gap-6">
-            <p className="flex gap-2 items-center text-sm text-text-secondary break-all">
+            <p className="flex gap-2 items-center text-sm text-text-secondary wrap-break-word">
               <Email aria-hidden="true" className="w-4 h-4" />
               adm.xavier@hotmail.com
             </p>
@@ -35,9 +38,9 @@ const OsDocumentHeader = ({ code, document_date }) => {
         </div>
 
         {/* Número da OS */}
-        <h3 className="order-first md:order-last  w-1/2 md:w-auto text-right md:text-left mt-2 md:mt-0 md:ml-auto self-start text-xl font-bold text-prim2 px-3 py-0.5 md:bg-text-secondary  inline-block rounded-md print:bg-text-secondary print:order-last print:w-auto print:mt-0 print:text-left">
+        <p className="order-first md:order-last  w-1/2 md:w-auto text-right md:text-left mt-2 md:mt-0 md:ml-auto self-start text-xl font-bold text-prim2 px-3 py-0.5 md:bg-text-secondary  inline-block rounded-md print:bg-text-secondary print:order-last print:w-auto print:mt-0 print:text-left">
           O.S {code}
-        </h3>
+        </p>
       </div>
 
       {/* Endereço */}
@@ -50,7 +53,7 @@ const OsDocumentHeader = ({ code, document_date }) => {
 
 OsDocumentHeader.propTypes = {
   code: PropTypes.string.isRequired,
-  created_at: PropTypes.string.isRequired,
+  document_date: PropTypes.string.isRequired,
 };
 
 export default OsDocumentHeader;

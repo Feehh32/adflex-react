@@ -18,25 +18,25 @@ const SalesSummaryStats = ({
       <StatsCard
         label="Total de vendas"
         mainInfo={formatCurrency(companyTotal)}
-        SecondaryInfo={`${monthName}/${period.year}`}
+        secondaryInfo={`${monthName}/${period.year}`}
         color="text-primary"
       />
       <StatsCard
         label="Vendeu mais"
         mainInfo={topClient?.client_name}
-        SecondaryInfo={formatCurrency(topClient?.total)}
+        secondaryInfo={formatCurrency(topClient?.total)}
         color="text-green-secondary"
       />
       <StatsCard
         label="Vendeu menos"
-        mainInfo={lowestClient.client_name}
-        SecondaryInfo={formatCurrency(lowestClient?.total)}
+        mainInfo={lowestClient?.client_name}
+        secondaryInfo={formatCurrency(lowestClient?.total)}
         color="text-red"
       />
       <StatsCard
         label="Clientes no período"
         mainInfo={clientsCount}
-        SecondaryInfo="com vendas"
+        secondaryInfo="com vendas"
         color="text-prim2"
       />
     </section>
@@ -45,9 +45,20 @@ const SalesSummaryStats = ({
 
 SalesSummaryStats.propTypes = {
   clientsCount: PropTypes.number.isRequired,
-  lowestClient: PropTypes.string.isRequired,
-  topClient: PropTypes.string.isRequired,
-  companyTotal: PropTypes.number.isRequired,
+  topClient: PropTypes.shape({
+    client_name: PropTypes.string,
+    total: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  }),
+  period: PropTypes.shape({
+    month: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
+  }).isRequired,
+  lowestClient: PropTypes.shape({
+    client_name: PropTypes.string,
+    total: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  }),
+  companyTotal: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
 };
 
 export default SalesSummaryStats;

@@ -5,7 +5,10 @@ import CardVisual from "../../components/UI/CardVisual";
 
 const TopClients = ({ topClients }) => {
   return (
-    <section className="flex-3 h-full mt-8" aria-labelledby="top-clients-title">
+    <section
+      className="flex-3 h-full mt-8 "
+      aria-labelledby="top-clients-title"
+    >
       <h2
         className="text-xl text-light-gray font-secondary font-bold mb-4"
         id="top-clients-title"
@@ -19,11 +22,10 @@ const TopClients = ({ topClients }) => {
         {topClients?.length === 0 && (
           <li className="col-span-4">
             <CardVisual className="h-49 flex justify-center items-center">
-              <span className="text-gray-medium m-auto block text-center">
+              <p className="text-gray-medium m-auto block text-center">
                 Nenhuma atividade registrada neste mês ainda. Os dados
                 aparecerão assim que novas ordens forem criadas.
-              </span>
-              <span className="text-gray-medium m-auto block text-center"></span>
+              </p>
             </CardVisual>
           </li>
         )}
@@ -36,6 +38,7 @@ const TopClients = ({ topClients }) => {
                 to={`/clients/${client.id}`}
               >
                 <span
+                  aria-label={`Posição ${index + 1} do ranking`}
                   className={`${
                     index === 0 ? "bg-prim2" : "bg-gray-dark"
                   } font-medium text-white rounded-sm w-7 h-7 flex items-center justify-center`}
@@ -49,11 +52,10 @@ const TopClients = ({ topClients }) => {
                   <span className="text-green-secondary font-bold mr-2">
                     {formatCurrency(client.monthly_revenue)}
                   </span>
-                  no mês
+                  faturados no mês
                 </p>
                 <span className="text-gray-medium text-sm w-full">
-                  {" "}
-                  {formatNumber(client.os_count)} O.S
+                  {formatNumber(client.os_count)} O.S.
                 </span>
               </CardVisual>
             </li>

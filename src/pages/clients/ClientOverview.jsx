@@ -12,7 +12,7 @@ const ClientOverview = ({ client, isDeleted }) => {
     "focus-visible flex gap-2 py-2 items-center font-semibold px-4 md:px-8 bg-gray-darker border border-gray-dark rounded-md shadow-md hover:scale-105 transition duration-300 ease-in-out text-gray-medium md:w-40 justify-center";
 
   return (
-    <section>
+    <div>
       <div className="flex gap-6 flex-wrap ">
         <ContactItem
           isDeleted={isDeleted}
@@ -47,7 +47,7 @@ const ClientOverview = ({ client, isDeleted }) => {
             className={`${styleButton} cursor-not-allowed opacity-50`}
             disabled
           >
-            <AddOs className="w-4 h-4" />
+            <span className="text-xl leading-none" aria-hidden="true">+</span>
             Nova OS
           </button>
 
@@ -55,23 +55,23 @@ const ClientOverview = ({ client, isDeleted }) => {
             className={`${styleButton} cursor-not-allowed opacity-50`}
             disabled
           >
-            <Edit className="w-3 h-3" />
+            <Edit className="w-3 h-3" aria-hidden="true" focusable="false" />
             Editar
           </button>
         </div>
       ) : (
         <div className="flex gap-6 flex-wrap mt-6">
           <Link to={`/service-orders/${client?.id}`} className={styleButton}>
-            <span className="text-xl leading-none">+</span>
+            <span className="text-xl leading-none" aria-hidden="true">+</span>
             Nova OS
           </Link>
           <Link to={`/clients/${client?.id}/edit`} className={styleButton}>
-            <Edit className="w-4 h-4" />
+            <Edit className="w-4 h-4" aria-hidden="true" focusable="false" />
             Editar
           </Link>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 

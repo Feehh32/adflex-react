@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -24,7 +25,7 @@ const OsPageSidebar = ({ serviceOrder, refreshServiceOrder }) => {
     if (!serviceOrder?.document_date) return;
 
     setDocDate(serviceOrder.document_date.split("T")[0]);
-  }, [serviceOrder]);
+  }, [serviceOrder?.document_date]);
 
   const handleUpdateDate = async () => {
     try {
@@ -48,12 +49,13 @@ const OsPageSidebar = ({ serviceOrder, refreshServiceOrder }) => {
       setIsDeleting(true);
       await deleteOs(serviceOrder.id);
 
-      toast.success("Ordem de serviço excluida com sucesso");
+      toast.success("Ordem de serviço excluída com sucesso.");
       setIsDeleteOpen(false);
       navigate(`/clients/${serviceOrder.client.id}`, { replace: true });
     } catch (error) {
       toast.error(error.message);
     } finally {
+      setIsDeleting(false);
       setIsDeleteOpen(false);
     }
   };
@@ -98,7 +100,7 @@ const OsPageSidebar = ({ serviceOrder, refreshServiceOrder }) => {
       >
         <div>
           <p className="text-sm text-light-gray">
-            Essa ação é irreversível. Depois de excluida, a O.S não pode ser
+            Esta ação é irreversível. Depois de excluída, a O.S não pode ser
             recuperada!
           </p>
         </div>
@@ -133,6 +135,8 @@ const OsPageSidebar = ({ serviceOrder, refreshServiceOrder }) => {
           <InputField
             type="date"
             label="Data da O.S"
+            id="docDate"
+            name="docDate"
             width="w-full"
             value={docDate}
             onChange={(e) => setDocDate(e.target.value)}
@@ -141,6 +145,20 @@ const OsPageSidebar = ({ serviceOrder, refreshServiceOrder }) => {
       </BaseModal>
     </>
   );
+};
+
+OsPageSidebar.propTypes = {
+  serviceOrder: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    code: PropTypes.string.isRequired,
+    document_date: PropTypes.string.isRequired,
+    total: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    services: PropTypes.array.isRequired,
+    client: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    }).isRequired,
+  }).isRequired,
+  refreshServiceOrder: PropTypes.func.isRequired,
 };
 
 export default OsPageSidebar;

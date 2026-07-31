@@ -19,9 +19,9 @@ const ClientsArea = ({ allClients }) => {
         {allClients?.length === 0 && (
           <li className="col-span-4">
             <CardVisual>
-              <span className="text-gray-medium m-auto block text-center">
+              <p className="text-gray-medium m-auto block text-center">
                 Nenhum cliente cadastrado
-              </span>
+              </p>
             </CardVisual>
           </li>
         )}
@@ -38,9 +38,9 @@ const ClientsArea = ({ allClients }) => {
                 </h3>
                 <span className="text-gray-medium w-full flex gap-2 justify-between">
                   Ordens de Serviço:
-                  <strong className="border border-green-secondary rounded-sm w-7 h-7 flex items-center justify-center bg-green-primary text-green-secondary">
+                  <span className="border border-green-secondary rounded-sm w-7 h-7 flex items-center justify-center bg-green-primary text-green-secondary">
                     {formatNumber(client.total_orders ?? 0)}
-                  </strong>
+                  </span>
                 </span>
               </CardVisual>
             </li>
@@ -52,7 +52,13 @@ const ClientsArea = ({ allClients }) => {
 };
 
 ClientsArea.propTypes = {
-  allClients: PropTypes.array,
+  allClients: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      total_orders: PropTypes.number,
+    }),
+  ),
 };
 
 export default ClientsArea;

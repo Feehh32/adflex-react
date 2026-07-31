@@ -6,14 +6,20 @@ const ServiceOrdersList = ({ serviceOrders, month, year }) => {
     month: "long",
   }).format(new Date(year, month - 1));
   return (
-    <section className="monthly-orders flex flex-col gap-4">
+    <section
+      className="monthly-orders flex flex-col gap-4"
+      aria-labelledby="service-orders-title"
+    >
       <div className="flex flex-col gap-1">
-        <h3 className="text-lg font-semibold text-text-primary">
+        <h3
+          className="text-lg font-semibold text-text-primary"
+          id="service-orders-title"
+        >
           Ordens de Serviço
         </h3>
 
         <p className="text-sm text-gray-medium">
-          Rela&ccedil;&atilde;o das ordens referentes ao per&iacute;odo de
+          Relação das ordens referentes ao período de
           {monthName} de {year}
         </p>
       </div>
@@ -31,7 +37,7 @@ const ServiceOrdersList = ({ serviceOrders, month, year }) => {
                 </span>
 
                 <span className="text-lg font-semibold text-text-primary">
-                  #{serviceOrder?.code}
+                  #{serviceOrder.code}
                 </span>
               </div>
               <div className="flex flex-col">
@@ -39,9 +45,12 @@ const ServiceOrdersList = ({ serviceOrders, month, year }) => {
                   Data documental
                 </span>
 
-                <span className="text-sm text-text-primary">
-                  {formatLongDate(serviceOrder?.document_date)}
-                </span>
+                <time
+                  className="text-sm text-text-primary"
+                  dateTime={serviceOrder.document_date}
+                >
+                  {formatLongDate(serviceOrder.document_date)}
+                </time>
               </div>
               <div className="flex flex-col md:items-end">
                 <span className="text-xs uppercase tracking-wide text-gray-medium">
@@ -49,7 +58,7 @@ const ServiceOrdersList = ({ serviceOrders, month, year }) => {
                 </span>
 
                 <span className="text-lg font-bold text-text-primary">
-                  {formatCurrency(serviceOrder?.total)}
+                  {formatCurrency(serviceOrder.total)}
                 </span>
               </div>
             </div>
@@ -58,18 +67,31 @@ const ServiceOrdersList = ({ serviceOrders, month, year }) => {
       </div>
 
       <table className="monthly-orders-table hidden w-full border-collapse text-sm">
+        <caption className="sr-only">
+          Relação das ordens de serviço do período.
+        </caption>
         <thead>
           <tr>
-            <th className="text-left">Ordem de Serviço</th>
-            <th className="text-left">Data documental</th>
-            <th className="text-right">Total</th>
+            <th className="text-left" scope="col">
+              Ordem de Serviço
+            </th>
+            <th className="text-left" scope="col">
+              Data documental
+            </th>
+            <th className="text-right" scope="col">
+              Total
+            </th>
           </tr>
         </thead>
         <tbody>
           {serviceOrders?.map((serviceOrder) => (
             <tr key={serviceOrder.id}>
               <td>#{serviceOrder.code}</td>
-              <td>{formatLongDate(serviceOrder.document_date)}</td>
+              <td>
+                <time dateTime={serviceOrder.document_date}>
+                  {formatLongDate(serviceOrder.document_date)}
+                </time>
+              </td>
               <td className="text-right">
                 {formatCurrency(serviceOrder.total)}
               </td>
@@ -89,9 +111,9 @@ ServiceOrdersList.propTypes = {
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       total: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
         .isRequired,
-    })
+    }),
   ).isRequired,
-  month: PropTypes.string.isRequired,
+  month: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   year: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 

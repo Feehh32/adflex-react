@@ -10,7 +10,7 @@ import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const MonthlyClientSales = () => {
   usePageMetadata({ title: "Balanço Mensal" });
-  const issuanceDate = new Date().toISOString();
+  const [issuanceDate] = useState(() => new Date().toISOString());
   const handlePrint = () => window.print();
   const {
     loading,
@@ -38,14 +38,15 @@ const MonthlyClientSales = () => {
                 .
               </span>
             </h1>
-            <span className="text-sm text-gray-medium">
+            <p className="text-sm text-gray-medium">
               Visualize e imprima o fechamento mensal de um cliente.
-            </span>
+            </p>
           </div>
           {hasResults && (
             <button
               className="hidden md:flex focus-visible py-2 px-4 font-semibold bg-prim2 border border-prim1 rounded-md shadow-md hover:scale-102 transition duration-300 ease-in-out text-gray-darker cursor-pointer w-full md:w-auto items-center justify-center gap-2"
               type="button"
+              aria-label="Imprimir balanço mensal"
               onClick={handlePrint}
             >
               <PrintIcon aria-hidden="true" className="w-5 h-5" />

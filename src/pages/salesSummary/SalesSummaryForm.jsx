@@ -70,14 +70,12 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
         <div className="flex flex-col gap-2 md:w-1/2 w-full">
           <label
             htmlFor="summary-year"
-            className={`text-sm font-medium flex gap-2`}
+            className="text-sm font-medium flex gap-2"
           >
             Ano
             <span className="text-prim1">*</span>
           </label>
-          <div
-            className={`relative flex items-center w-full md:w-full focus-within:ring-2 focus-within:ring-prim1 rounded-lg border border-gray-dark shadow-lg`}
-          >
+          <div className="relative flex items-center w-full md:w-full focus-within:ring-2 focus-within:ring-prim1 rounded-lg border border-gray-dark shadow-lg">
             <Calendar className="w-4 h-4 absolute left-3 opacity-50" />
             <select
               value={year}
@@ -97,6 +95,7 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
         </div>
         <button
           type="submit"
+          disabled={loading}
           className="focus-visible md:mt-7 py-2 px-4 font-semibold bg-prim2 border border-prim1 rounded-md shadow-md hover:scale-102 transition duration-300 ease-in-out text-gray-darker cursor-pointer w-full md:w-auto"
         >
           {loading ? <ButtonSpinner /> : "Buscar"}

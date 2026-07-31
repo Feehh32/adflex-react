@@ -1,7 +1,10 @@
 const FormHeader = ({ isEditMode }) => {
   return (
     <div className="flex flex-col gap-1">
-      <h1 className="text-2xl md:text-[32px] font-secondary font-bold">
+      <h1
+        className="text-2xl md:text-[32px] font-secondary font-bold"
+        id="client-form-title"
+      >
         {isEditMode ? "Editar Cliente" : "Novo Cliente"}
         <span className="text-prim1" aria-hidden="true">
           .

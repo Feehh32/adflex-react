@@ -10,13 +10,13 @@ const NotFoundPage = () => {
   return (
     <section
       className="flex flex-col gap-6 justify-center items-center"
-      aria-labelledby="not-found"
+      aria-labelledby="not-found-title"
     >
       <span aria-hidden="true" className="text-prim2 font-secondary text-9xl">
         404
       </span>
       <h1
-        id="not-found"
+        id="not-found-title"
         className="text-2xl md:text-[32px] font-secondary font-bold"
       >
         Página não encontrada
@@ -25,7 +25,9 @@ const NotFoundPage = () => {
         </span>
       </h1>
 
-      <p>A página que você procurou não foi encontrada ou foi removida.</p>
+      <p>
+        A página que você tentou acessar não existe ou não está mais disponível.
+      </p>
 
       <Link
         to={isAuthenticated ? "/" : "/login"}

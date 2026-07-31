@@ -1,4 +1,6 @@
+import { useId } from "react";
 import PropTypes from "prop-types";
+
 const InputField = ({
   label,
   name,
@@ -14,15 +16,24 @@ const InputField = ({
   value,
   onChange,
 }) => {
+  const generateId = useId();
+  const inputId = id || name || generateId;
+  const errorId = `${inputId}-error`;
+  const errorMessage = error?.message || "Preencha o campo corretamente";
   const inputProps = register ? register(name) : { name, value, onChange };
 
   return (
     <div className="flex flex-col gap-2">
       <label
-        htmlFor={id}
-        className={`text-sm font-medium flex gap-2 ${error && "text-red"}`}
+        htmlFor={inputId}
+        className={`text-sm font-medium flex gap-2 ${error ? "text-red" : ""}`}
       >
-        {label} {required && <span className="text-prim1">*</span>}
+        {label}
+        {required && (
+          <span aria-hidden="true" className="text-prim1">
+            *
+          </span>
+        )}
       </label>
       <div
         className={`relative flex items-center w-full md:${width} focus-within:ring-2 focus-within:ring-prim1 rounded-lg border ${
@@ -37,9 +48,11 @@ const InputField = ({
         )}
         <input
           type={type}
-          id={id}
-          noValidate={true}
+          id={inputId}
           autoComplete={autoComplete}
+          aria-required={required}
+          aria-invalid={error ? "true" : "false"}
+          aria-describedby={error ? errorId : undefined}
           {...inputProps}
           placeholder={placeholder}
           className={`w-full bg-gray-input rounded-lg py-2 pr-4 text-text-primary placeholder:text-gray-medium focus:outline-none transition ${
@@ -48,8 +61,8 @@ const InputField = ({
         />
       </div>
       {error && (
-        <span className="text-xs text-red">
-          {error.message || "Preencha o campo corretamente"}
+        <span id={errorId} role="alert" className="text-xs text-red">
+          {errorMessage}
         </span>
       )}
     </div>
@@ -64,7 +77,7 @@ InputField.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   autoComplete: PropTypes.string,
-  Icon: PropTypes.element,
+  Icon: PropTypes.elementType,
   width: PropTypes.string,
   register: PropTypes.func,
   error: PropTypes.object,

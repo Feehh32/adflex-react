@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const StatsCard = ({ label, mainInfo, SecondaryInfo, color }) => {
+const StatsCard = ({ label, mainInfo, secondaryInfo, color }) => {
   const getMainInfoSize = (text) => {
     const contentLength = String(text).length;
 
@@ -34,7 +34,7 @@ const StatsCard = ({ label, mainInfo, SecondaryInfo, color }) => {
         {mainInfo}
       </span>
 
-      <span className="text-sm text-gray-medium mt-auto">{SecondaryInfo}</span>
+      <span className="text-sm text-gray-medium mt-auto">{secondaryInfo}</span>
     </div>
   );
 };

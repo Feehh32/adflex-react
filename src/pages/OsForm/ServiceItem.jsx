@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import TrashIcon from "../../assets/icons/trash.svg?react";
 import InputField from "../../components/UI/InputField";
 
@@ -19,19 +20,25 @@ const ServiceItem = ({
     if (thicknessOptions.length > 0 && !selectedThickness) {
       setValue(`services.${index}.thickness_id`, thicknessOptions[2]?.id);
     }
-  }, [thicknessOptions, selectedThickness]);
+  }, [index, selectedThickness, setValue, thicknessOptions]);
 
   return (
-    <div className=" gap-4 p-4 border border-gray-dark rounded-lg transition-all duration-200 ease-in-out">
+    <div className="p-4 border border-gray-dark rounded-lg transition-all duration-200 ease-in-out">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold">Serviço {index + 1}</h3>
         {canRemove && onRemove && (
           <button
             type="button"
             onClick={onRemove}
+            aria-label={`Remover serviço ${index + 1}`}
             className=" bg-gray-input border border-gray-dark text-sm p-1 rounded-md hover:opacity-70 hover:text-gray-darker transition duration-300 ease-in-out cursor-pointer"
           >
-            <TrashIcon fill="#6a7282" aria-hidden="true" className="w-4 h-4" />
+            <TrashIcon
+              fill="#6a7282"
+              aria-hidden="true"
+              focusable="false"
+              className="w-4 h-4"
+            />
           </button>
         )}
       </div>
@@ -101,14 +108,16 @@ const ServiceItem = ({
           </span>
         </div>
       </div>
-      <div className="flex gap-2 flex-wrap mt-4">
-        <label className="text-sm font-medium flex gap-2 w-full">
-          Espessura <span className="text-prim1">*</span>
-        </label>
+      <fieldset className="flex gap-2 flex-wrap mt-4">
+        <legend className="text-sm font-medium mb-2">
+          Espessura
+          <span className="text-prim1">*</span>
+        </legend>
         {thicknessOptions.map((option) => (
           <button
             key={option.id}
             type="button"
+            aria-pressed={selectedThickness === option.id}
             onClick={() => {
               setValue(`services.${index}.thickness_id`, option.id, {
                 shouldValidate: true,
@@ -126,9 +135,20 @@ const ServiceItem = ({
             {option.label} mm
           </button>
         ))}
-      </div>
+      </fieldset>
     </div>
   );
+};
+
+ServiceItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  onRemove: PropTypes.func,
+  canRemove: PropTypes.bool,
+  watch: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+  thicknessOptions: PropTypes.array.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default ServiceItem;

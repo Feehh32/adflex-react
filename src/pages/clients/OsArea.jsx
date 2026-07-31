@@ -38,11 +38,11 @@ const OsArea = ({
         ) : (
           <li>
             <CardVisual className="h-49 flex justify-center items-center">
-              <span className="text-gray-medium m-auto block text-center">
+              <p className="text-gray-medium m-auto block text-center">
                 {isSearching
                   ? "Nenhuma O.S encontrada com esse código."
                   : "Esse cliente ainda não tem nenhuma O.S cadastrada."}
-              </span>
+              </p>
             </CardVisual>
           </li>
         )}
@@ -61,6 +61,7 @@ const OsArea = ({
 
         <div className="flex gap-2">
           <button
+            type="button"
             onClick={prevPage}
             disabled={pagination.page === 1 || isDeleted}
             className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"
@@ -68,6 +69,7 @@ const OsArea = ({
             Anterior
           </button>
           <button
+            type="button"
             onClick={nextPage}
             disabled={pagination.page === pagination.total_pages || isDeleted}
             className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"

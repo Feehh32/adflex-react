@@ -22,6 +22,14 @@ const OsForm = () => {
   const { createServiceOrder, loading: creating } = useCreateServiceOrder();
   const { clientId } = useParams();
   const navigate = useNavigate();
+  const createEmptyService = () => ({
+    service_name: "",
+    width: "",
+    height: "",
+    amount: "",
+    budget_value: "",
+    thickness_id: thicknessOptions[2]?.id || null,
+  });
 
   const {
     control,
@@ -37,16 +45,7 @@ const OsForm = () => {
     defaultValues: {
       client_id: Number(clientId) || null,
       hide_measure: false,
-      services: [
-        {
-          service_name: "",
-          width: "",
-          height: "",
-          amount: "",
-          budget_value: "",
-          thickness_id: thicknessOptions[2]?.id || null,
-        },
-      ],
+      services: [createEmptyService()],
     },
   });
 
@@ -68,31 +67,20 @@ const OsForm = () => {
     }
 
     if (previousClientId.current !== selectedClientId) {
-      replace([
-        {
-          service_name: "",
-          width: "",
-          height: "",
-          amount: "",
-          budget_value: "",
-          thickness_id: thicknessOptions[2]?.id || null,
-        },
-      ]);
+      replace([createEmptyService()]);
     }
 
     previousClientId.current = selectedClientId;
-  }, [selectedClientId]);
+  }, [selectedClientId, replace, thicknessOptions]);
 
   const onSubmit = async (data) => {
     try {
       const result = await createServiceOrder(data);
       toast.success(`O.S ${result.code} criada com sucesso!`);
 
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         navigate(`/service-order-page/${result.id}`);
       }, 2010);
-
-      return () => clearTimeout(timer);
     } catch (err) {
       toast.error(err.message || "Erro ao criar O.S");
     }
@@ -122,7 +110,7 @@ const OsForm = () => {
           errors={errors}
         />
         <SummarySection />
-        <div className="flex md:justify-end gap-4 bg-gray-darker p-4 rounded-lg border border-gray-dark shdow-lg">
+        <div className="flex md:justify-end gap-4 bg-gray-darker p-4 rounded-lg border border-gray-dark shadow-lg">
           <button
             type="submit"
             disabled={creating}

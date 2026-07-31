@@ -24,7 +24,7 @@ const OsServicesArea = ({ hideMeasure, services }) => {
           </thead>
 
           <tbody>
-            {services?.map((service, index) => (
+            {services.map((service, index) => (
               <tr
                 key={service.id}
                 className="border-t-2 border-gray-medium text-sm text-text-secondary"
@@ -57,7 +57,7 @@ const OsServicesArea = ({ hideMeasure, services }) => {
 
       {/* 📱 MOBILE (cards) */}
       <div className="md:hidden print:hidden flex flex-col gap-4">
-        {services?.map((service, index) => (
+        {services.map((service, index) => (
           <div
             key={service.id}
             className="border border-gray-medium rounded-md p-4 space-y-2"
@@ -72,7 +72,7 @@ const OsServicesArea = ({ hideMeasure, services }) => {
             </div>
 
             <div className="text-sm text-text-secondary flex flex-wrap gap-x-4 gap-y-1">
-              <span>Qtd: {service.service_amount}</span>
+              <span>Qtd: {service.amount}</span>
 
               {!hideMeasure && (
                 <>
@@ -91,8 +91,20 @@ const OsServicesArea = ({ hideMeasure, services }) => {
 };
 
 OsServicesArea.propTypes = {
-  hideMeasure: PropTypes.bool,
-  services: PropTypes.array,
+  hideMeasure: PropTypes.bool.isRequired,
+  services: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      service_name: PropTypes.string.isRequired,
+      amount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        .isRequired,
+      width: PropTypes.string,
+      height: PropTypes.string,
+      thickness: PropTypes.string.isRequired,
+      line_total: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        .isRequired,
+    }),
+  ).isRequired,
 };
 
 export default OsServicesArea;

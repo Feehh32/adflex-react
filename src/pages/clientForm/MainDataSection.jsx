@@ -6,7 +6,6 @@ import InputField from "../../components/UI/InputField";
 const MainDataSection = ({ register, errors }) => {
   return (
     <section
-      as="section"
       className="flex flex-col gap-4 bg-gray-darker p-4 rounded-lg shadow-lg border border-gray-dark"
       aria-labelledby="main-data-section-clientform-title"
     >
@@ -21,25 +20,23 @@ const MainDataSection = ({ register, errors }) => {
           >
             Dados Principais
           </h2>
-          <span className="text-sm text-gray-medium">
+          <p className="text-sm text-gray-medium">
             Informações básicas do cliente.
-          </span>
+          </p>
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        <InputField
-          label="Nome"
-          name="name"
-          id="name"
-          autoComplete="name"
-          required
-          placeholder="Digite o nome do cliente"
-          Icon={UserIconGray}
-          width="w-1/2"
-          register={register}
-          error={errors.name}
-        />
-      </div>
+      <InputField
+        label="Nome"
+        name="name"
+        id="name"
+        autoComplete="name"
+        required
+        placeholder="Digite o nome do cliente"
+        Icon={UserIconGray}
+        width="w-1/2"
+        register={register}
+        error={errors.name}
+      />
     </section>
   );
 };

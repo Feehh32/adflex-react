@@ -14,7 +14,7 @@ const PhoneSection = ({ control, errors }) => {
     >
       <div className="flex items-center gap-4">
         <div className="p-2 rounded-lg border border-prim2/50 bg-gray-input inline-block">
-          <PhoneIcon className="w-6 h-6" />
+          <PhoneIcon className="w-6 h-6" aria-hidden="true" />
         </div>
         <div>
           <h2
@@ -23,9 +23,9 @@ const PhoneSection = ({ control, errors }) => {
           >
             Contatos - Telefones
           </h2>
-          <span className="text-sm text-gray-medium">
+          <p className="text-sm text-gray-medium">
             Informações de contato do cliente.
-          </span>
+          </p>
         </div>
       </div>
 

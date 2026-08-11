@@ -1,5 +1,5 @@
 ✅ Acessibilidade (concluído)
-🔜 Performance
+✅ Performance
 🔜 Revisão de UX (microinterações, animações, detalhes)
 🔜 Refatorações pontuais que aparecerem
 🔜 Testes

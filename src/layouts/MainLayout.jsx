@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import ErrorScreen from "../components/UI/ErrorScreen";
 import Sidebar from "../components/sidebar/Sidebar";
 import { useGlobalError } from "../hooks/useGlobalError";
+import PageTransition from "../components/UI/PageTransition";
 
 const MainLayout = () => {
   const { error, clearGlobalError } = useGlobalError();
@@ -24,7 +25,9 @@ const MainLayout = () => {
         id="main-content"
         className="flex-1 md:overflow-y-auto p-4 lg:p-6 xl:py-8 xl:px-6"
       >
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
     </div>
   );

@@ -266,3 +266,49 @@ input[type="search"]::-webkit-search-decoration {
     page-break-inside: avoid;
   }
 }
+
+/* Page transitions e animations */
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: page-enter 300ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+}
+
+@keyframes auth-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.page-transition-auth {
+  animation: auth-enter 400ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-auth {
+    animation: none;
+  }
+}

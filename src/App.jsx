@@ -1,16 +1,26 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout.jsx";
 import AuthLayout from "./layouts/AuthLayout.jsx";
-import Home from "./pages/home/Home.jsx";
-import ClientPage from "./pages/clients/ClientPage.jsx";
-import ClientFormPage from "./pages/clientForm/ClientFormPage.jsx";
-import OsPage from "./pages/OsPage/OsPage.jsx";
-import OsFormPage from "./pages/OsForm/OsFormPage.jsx";
-import MonthlyClientSales from "./pages/monthlyClientSales/MonthlyClientSales.jsx";
-import SalesSummary from "./pages/salesSummary/SalesSummary.jsx";
-import LoginPage from "./pages/login/LoginPage.jsx";
-import NotFoundPage from "./pages/notFound/NotFoundPage.jsx";
+
+// Pages are loaded on demand so the initial bundle only includes
+// the code required for the current route.
+const Home = lazy(() => import("./pages/home/Home.jsx"));
+const ClientPage = lazy(() => import("./pages/clients/ClientPage.jsx"));
+const ClientFormPage = lazy(
+  () => import("./pages/clientForm/ClientFormPage.jsx"),
+);
+const OsPage = lazy(() => import("./pages/OsPage/OsPage.jsx"));
+const OsFormPage = lazy(() => import("./pages/OsForm/OsFormPage.jsx"));
+const MonthlyClientSales = lazy(
+  () => import("./pages/monthlyClientSales/MonthlyClientSales.jsx"),
+);
+const SalesSummary = lazy(
+  () => import("./pages/salesSummary/SalesSummary.jsx"),
+);
+const LoginPage = lazy(() => import("./pages/login/LoginPage.jsx"));
+const NotFoundPage = lazy(() => import("./pages/notFound/NotFoundPage.jsx"));
 
 import { Toaster } from "react-hot-toast";
 import GlobalErrorProvider from "./context/GlobalErrorProvider.jsx";
@@ -49,54 +59,56 @@ const App = () => {
       />
       <GlobalErrorProvider>
         <AuthProvider>
-          <Routes>
-            <Route
-              element={
-                <ProtectedRoute>
-                  <MainLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Home />} />
-              {/* Clients */}
-              <Route path="/clients/:clientId" element={<ClientPage />} />
-              <Route path="/clients/new" element={<ClientFormPage />} />
+          <Suspense fallback={null}>
+            <Routes>
               <Route
-                path="/clients/:clientId/edit"
-                element={<ClientFormPage />}
-              />
-
-              {/* Service Orders */}
-              <Route
-                path="/service-orders/:clientId"
-                element={<OsFormPage />}
-              />
-              <Route path="/service-orders/new" element={<OsFormPage />} />
-              <Route path="/service-order-page/:osId" element={<OsPage />} />
-
-              {/* Reports */}
-              <Route
-                path="/monthly-client-sales"
-                element={<MonthlyClientSales />}
-              />
-              <Route path="/sales-summary" element={<SalesSummary />} />
-              {/* Not Found */}
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-            {/* Login */}
-            <Route element={<AuthLayout />}>
-              <Route
-                path="/login"
                 element={
-                  <GuestRoute>
-                    <LoginPage />
-                  </GuestRoute>
+                  <ProtectedRoute>
+                    <MainLayout />
+                  </ProtectedRoute>
                 }
-              />
-              {/* Not Found */}
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
+              >
+                <Route index element={<Home />} />
+                {/* Clients */}
+                <Route path="/clients/:clientId" element={<ClientPage />} />
+                <Route path="/clients/new" element={<ClientFormPage />} />
+                <Route
+                  path="/clients/:clientId/edit"
+                  element={<ClientFormPage />}
+                />
+
+                {/* Service Orders */}
+                <Route
+                  path="/service-orders/:clientId"
+                  element={<OsFormPage />}
+                />
+                <Route path="/service-orders/new" element={<OsFormPage />} />
+                <Route path="/service-order-page/:osId" element={<OsPage />} />
+
+                {/* Reports */}
+                <Route
+                  path="/monthly-client-sales"
+                  element={<MonthlyClientSales />}
+                />
+                <Route path="/sales-summary" element={<SalesSummary />} />
+                {/* Not Found */}
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+              {/* Login */}
+              <Route element={<AuthLayout />}>
+                <Route
+                  path="/login"
+                  element={
+                    <GuestRoute>
+                      <LoginPage />
+                    </GuestRoute>
+                  }
+                />
+                {/* Not Found */}
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </Suspense>
         </AuthProvider>
       </GlobalErrorProvider>
     </>

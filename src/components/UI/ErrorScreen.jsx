@@ -3,7 +3,9 @@ import Logo from "../../assets/logoColorida.svg?react";
 
 const ErrorScreen = ({ message, error, onRetry }) => {
   const errorMsg =
-    message || error || error?.message || "Ocorreu um erro inesperado.";
+    message ||
+    (typeof error === "string" ? error : error?.message) ||
+    "Verifique sua conexão ou tente novamente em alguns instantes.";
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center bg-[#1B1C1D] text-light-gray">
       <div

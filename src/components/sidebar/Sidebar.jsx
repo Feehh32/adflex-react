@@ -15,9 +15,8 @@ import SidebarUserMenu from "./SidebarUserMenu";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
-  const canGoBack = window.history.state?.idx > 0;
-  const canGoForward = window.history.state?.idx < window.history.length - 1;
+  const historyIndex = window.history.state?.idx ?? 0;
+  const canGoBack = historyIndex > 0;
 
   return (
     <>
@@ -97,42 +96,35 @@ const Sidebar = () => {
             </li>
           </ul>
         </nav>
-        <div className="flex ml-8 pr-8 pt-2 justify-between items-center text-gray-medium">
-          <button
-            className={`focus-visible flex items-center gap-2 p-2 rounded-md text-sm 
-              ${
-                canGoBack
-                  ? "cursor-pointer hover:bg-gray-dark"
-                  : "opacity-40 cursor-auto pointer-events-none"
-              }`}
-            onClick={() => navigate(-1)}
-            disabled={!canGoBack}
-          >
-            <Arrow
-              className="rotate-180 text-gray-medium w-5 h-5"
-              aria-hidden="true"
-            />
-            <span>Voltar</span>
-          </button>
-          <button
-            className={`focus-visible flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-dark rounded-md text-sm ${
-              canGoForward
-                ? "cursor-pointer hover:bg-gray-dark"
-                : "opacity-40 cursor-auto pointer-events-none"
-            }`}
-            onClick={() => navigate(1)}
-            disabled={!canGoBack}
-          >
-            <span>Avançar</span>
-            <Arrow className="text-gray-medium w-5 h-5" aria-hidden="true" />
-          </button>
-        </div>
         <div className="mt-auto flex flex-col gap-4">
+          {canGoBack && (
+            <div className="border-b border-gray-dark">
+              <button
+                type="button"
+                className="focus-visible w-fit mb-4 mx-auto flex items-center gap-2 px-8 py-2 rounded-md text-sm transition-colors cursor-pointer hover:bg-gray-dark/50 duration-300 ease-in-out"
+                onClick={() => navigate(-1)}
+              >
+                <Arrow
+                  className="rotate-180 text-gray-medium w-5 h-5"
+                  aria-hidden="true"
+                />
+                <span>Voltar</span>
+              </button>
+            </div>
+          )}
           <SidebarUserMenu />
-          <footer className="text-light-gray text-xs p-8 text-center border-t border-gray-dark">
-            <p>
-              Desenvolvido por Fernando Pereira Alguns — direitos reservados —{" "}
-              {new Date().getFullYear()}
+          <footer className="border-t flex flex-col gap-2 border-gray-dark px-6 py-5 text-center">
+            <SidebarLogo
+              className="mx-auto h-4 w-auto"
+              aria-hidden="true"
+              focusable={false}
+            />
+            <p className=" text-gray-medium text-[11px]">
+              Desenvolvido por
+              <span className="text-prim1 font-medium"> Fernando Pereira</span>
+            </p>
+            <p className=" text-gray-medium/70 text-[10px]">
+              © {new Date().getFullYear()} — Todos os direitos reservados
             </p>
           </footer>
         </div>

@@ -27,6 +27,8 @@ const ClientNameSelect = ({ error, clients, clientIdFromUrl, register }) => {
           {...register("client_id", { valueAsNumber: true })}
           id="service-order-client-id"
           autoComplete="off"
+          aria-invalid={!!error.client_id}
+          aria-describedby={error.client_id ? "client-id-error" : undefined}
           disabled={Boolean(clientIdFromUrl)}
           className={`w-full bg-gray-input rounded-lg py-2 px-4 text-text-primary placeholder:text-gray-medium focus:outline-none transition pl-10 ${
             clientIdFromUrl ? "opacity-30 pointer-events-none" : ""
@@ -43,11 +45,7 @@ const ClientNameSelect = ({ error, clients, clientIdFromUrl, register }) => {
         </select>
       </div>
       {error.client_id && (
-        <span
-          className="text-xs text-red"
-          aria-invalid={!!error.client_id}
-          aria-describedby={error.client_id ? "client-id-error" : undefined}
-        >
+        <span className="text-xs text-red" id="client-id-error">
           {error.client_id.message || "Preencha o campo corretamente"}
         </span>
       )}

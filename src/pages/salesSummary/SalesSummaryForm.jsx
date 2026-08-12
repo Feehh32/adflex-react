@@ -3,6 +3,20 @@ import PropTypes from "prop-types";
 import Calendar from "../../assets/icons/calendar.svg?react";
 import ButtonSpinner from "../../components/UI/ButtonSpinner";
 
+const months = [
+  { monthName: "Janeiro", monthNumber: 1 },
+  { monthName: "Fevereiro", monthNumber: 2 },
+  { monthName: "Março", monthNumber: 3 },
+  { monthName: "Abril", monthNumber: 4 },
+  { monthName: "Maio", monthNumber: 5 },
+  { monthName: "Junho", monthNumber: 6 },
+  { monthName: "Julho", monthNumber: 7 },
+  { monthName: "Agosto", monthNumber: 8 },
+  { monthName: "Setembro", monthNumber: 9 },
+  { monthName: "Outubro", monthNumber: 10 },
+  { monthName: "Novembro", monthNumber: 11 },
+  { monthName: "Dezembro", monthNumber: 12 },
+];
 const SalesSummaryForm = ({ onSubmit, loading }) => {
   const currentDate = new Date();
   const [month, setMonth] = useState(currentDate.getMonth() + 1);
@@ -10,20 +24,6 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
 
   const preSelectedYear = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, i) => preSelectedYear - i);
-  const months = [
-    { monthName: "Janeiro", monthNumber: 1 },
-    { monthName: "Fevereiro", monthNumber: 2 },
-    { monthName: "Março", monthNumber: 3 },
-    { monthName: "Abril", monthNumber: 4 },
-    { monthName: "Maio", monthNumber: 5 },
-    { monthName: "Junho", monthNumber: 6 },
-    { monthName: "Julho", monthNumber: 7 },
-    { monthName: "Agosto", monthNumber: 8 },
-    { monthName: "Setembro", monthNumber: 9 },
-    { monthName: "Outubro", monthNumber: 10 },
-    { monthName: "Novembro", monthNumber: 11 },
-    { monthName: "Dezembro", monthNumber: 12 },
-  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
             <Calendar className="w-4 h-4 absolute left-3 opacity-50" />
             <select
               value={month}
-              onChange={(e) => setMonth(e.target.value)}
+              onChange={(e) => setMonth(Number(e.target.value))}
               name="summary-month"
               id="summary-month"
               autoComplete="off"
@@ -79,7 +79,7 @@ const SalesSummaryForm = ({ onSubmit, loading }) => {
             <Calendar className="w-4 h-4 absolute left-3 opacity-50" />
             <select
               value={year}
-              onChange={(e) => setYear(e.target.value)}
+              onChange={(e) => setYear(Number(e.target.value))}
               name="summary-year"
               id="summary-year"
               autoComplete="off"

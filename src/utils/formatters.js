@@ -1,4 +1,4 @@
-// Instance formatters
+// Reusable Intl formatter instances.
 const currencyFormatter = new Intl.NumberFormat("pt-BR", {
   style: "currency",
   currency: "BRL",
@@ -22,7 +22,7 @@ const monthYearFormatter = new Intl.DateTimeFormat("pt-BR", {
   year: "numeric",
 });
 
-// Export formatters functions
+// Formatting helpers used for displaying stored values throughout the application.
 export const formatCurrency = (value) => currencyFormatter.format(value ?? 0);
 
 export const formatNumber = (value) => numberFormatter.format(value ?? 0);
@@ -36,6 +36,7 @@ export const formatRelativeDate = (dateString) => {
 
   const diffInDays = Math.round((date - now) / (1000 * 60 * 60 * 24));
 
+  // Use relative dates only for recent entries; older dates use the standard date format.
   if (Math.abs(diffInDays) <= 15) {
     return relativeDateFormatter.format(diffInDays, "day");
   }
@@ -64,15 +65,15 @@ export const formatMonthYear = (dateString) => {
 export const formatPhone = (phone) => {
   if (!phone) return "";
 
-  // remove tudo que não é número
+  // Remove non-numeric characters before applying the phone mask.
   const cleaned = phone.replace(/\D/g, "");
 
-  // celphone (11 dígitos)
+  // Brazilian mobile number with 11 digits.
   if (cleaned.length === 11) {
     return cleaned.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
   }
 
-  // fixed phone (10 dígitos)
+  // Brazilian landline number with 10 digits.
   if (cleaned.length === 10) {
     return cleaned.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
   }

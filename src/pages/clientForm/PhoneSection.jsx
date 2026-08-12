@@ -68,6 +68,7 @@ const PhoneSection = ({ control, errors }) => {
               width="w-full"
               value={formatPhone(field.value) || ""}
               onChange={(e) => {
+                // Keep only digits in form state; formatting is applied only for display.
                 const rawValue = unformatPhone(e.target.value);
                 field.onChange(rawValue);
               }}

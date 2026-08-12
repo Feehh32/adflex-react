@@ -33,6 +33,7 @@ const BaseModal = ({
     modalRef,
   });
 
+  // Prevent the page behind the modal from scrolling while it is open.
   useEffect(() => {
     if (!isOpen) return;
 
@@ -60,12 +61,14 @@ const BaseModal = ({
 
   if (!isOpen) return null;
 
+  // Close only when the overlay itself is clicked, not when interacting with modal content.
   const handleOverlayMouseDown = (event) => {
     if (closeOnOverlay && event.target === event.currentTarget) {
       onClose();
     }
   };
 
+  // Render the modal directly under <body> to avoid layout and stacking-context issues.
   return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm print:hidden"
@@ -104,7 +107,6 @@ const BaseModal = ({
               <button
                 type="button"
                 onClick={onClose}
-                aria-hidden="true"
                 className="focus-visible flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-gray-medium transition hover:bg-gray-dark hover:text-light-gray cursor-pointer"
                 aria-label="Fechar modal"
               >

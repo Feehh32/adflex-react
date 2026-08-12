@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// Validates and normalizes service order data before it is submitted to the application.
 const serviceSchema = z.object({
   service_name: z
     .string()

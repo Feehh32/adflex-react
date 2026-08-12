@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// Validates and normalizes client data before it is submitted to the application.
 export const clientSchema = z.object({
   name: z.string().trim().min(3, "Nome deve ter pelo menos 3 caracteres."),
 
@@ -43,7 +44,7 @@ export const clientSchema = z.object({
       },
       {
         message: "O telefone secundário deve ter 10 ou 11 dígitos.",
-      }
+      },
     ),
 
   charge: z

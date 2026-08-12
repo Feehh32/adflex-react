@@ -49,7 +49,6 @@ const ServicesSection = ({
           return (
             <li key={field.id}>
               <ServiceItem
-                key={field.id}
                 index={index}
                 onRemove={() => remove(index)}
                 canRemove={fields.length > 1}

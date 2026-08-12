@@ -20,6 +20,7 @@ export const useDashboardStats = () => {
     try {
       setLoading(true);
 
+      // Dashboard data is loaded through a single RPC to keep the data aggregation in the database.
       const { data, error } = await supabase.rpc("dashboard_home");
       if (error) throw error;
 

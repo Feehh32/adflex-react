@@ -10,6 +10,7 @@ import { usePageMetadata } from "../../hooks/usePageMetadata";
 
 const MonthlyClientSales = () => {
   usePageMetadata({ title: "Balanço Mensal" });
+  // Keep the issuance date stable for the lifetime of the page/report.
   const [issuanceDate] = useState(() => new Date().toISOString());
   const handlePrint = () => window.print();
   const {
@@ -79,6 +80,7 @@ const MonthlyClientSales = () => {
             period={period}
           />
         )}
+        {/* Keep a separate print-only document so screen and print layouts can use different markup. */}
         {hasResults && (
           <button
             className="md:hidden focus-visible md:mt-7 py-2 px-4 font-semibold bg-prim2 border border-prim1 rounded-md shadow-md hover:scale-102 transition duration-300 ease-in-out text-gray-darker cursor-pointer w-full md:w-auto flex items-center justify-center gap-2"

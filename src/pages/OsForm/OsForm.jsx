@@ -22,12 +22,14 @@ const OsForm = () => {
   const { createServiceOrder, loading: creating } = useCreateServiceOrder();
   const { clientId } = useParams();
   const navigate = useNavigate();
+  // Creates the initial service structure used when the form is initialized or reset.
   const createEmptyService = () => ({
     service_name: "",
     width: "",
     height: "",
     amount: "",
     budget_value: "",
+    // Uses the third thickness option as the default when available.
     thickness_id: thicknessOptions[2]?.id || null,
   });
 
@@ -60,6 +62,8 @@ const OsForm = () => {
     name: "client_id",
   });
 
+  // Reset services when the selected client changes to prevent carrying
+  // service data from the previous client into the new O.S.
   useEffect(() => {
     if (previousClientId.current === null) {
       previousClientId.current = selectedClientId;
@@ -73,6 +77,7 @@ const OsForm = () => {
     previousClientId.current = selectedClientId;
   }, [selectedClientId, replace, thicknessOptions]);
 
+  // Create the order first, then redirect to its detail page after showing success feedback.
   const onSubmit = async (data) => {
     try {
       const result = await createServiceOrder(data);

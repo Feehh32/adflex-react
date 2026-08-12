@@ -1,4 +1,5 @@
 export function formatPhone(value) {
+  // Formatting helpers used while editing form values.
   if (!value) return;
 
   const numbers = value.replace(/\D/g, "");
@@ -14,7 +15,7 @@ export function formatPhone(value) {
   }
   if (limited.length <= 10) {
     return `(${limited.slice(0, 2)}) ${limited.slice(2, 6)}-${limited.slice(
-      6
+      6,
     )}`;
   }
 
@@ -22,5 +23,6 @@ export function formatPhone(value) {
 }
 
 export function unformatPhone(value) {
+  // Removes formatting so the phone number can be stored or validated as digits only.
   return value.replace(/\D/g, "");
 }

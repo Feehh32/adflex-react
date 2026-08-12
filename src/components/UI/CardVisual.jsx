@@ -3,6 +3,7 @@ import bgInnerHome from "../../assets/img/bgInnerHome.jpg";
 
 const CardVisual = ({
   children,
+  // Allows the visual card to render as another HTML element or component.
   // eslint-disable-next-line no-unused-vars
   as: Component = "div",
   className = "",

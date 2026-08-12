@@ -1,6 +1,6 @@
 import { supabase } from "../services/supabase";
 
-// Function to create a new client
+// Creates a client through the RPC to keep client creation rules in the database.
 export const createClient = async (data) => {
   const { data: result, error } = await supabase.rpc("create_client", data);
 
@@ -14,7 +14,7 @@ export const createClient = async (data) => {
   return result;
 };
 
-// Function to search a client by ID
+// Retrieves a client by its ID.
 export const getClientById = async (clientId) => {
   const { data, error } = await supabase
     .from("clients")
@@ -27,7 +27,7 @@ export const getClientById = async (clientId) => {
   return data;
 };
 
-// Function to update a client by ID
+// Updates the client record directly by its ID.
 export const updateClient = async (clientId, data) => {
   const { data: result, error } = await supabase
     .from("clients")
@@ -43,7 +43,7 @@ export const updateClient = async (clientId, data) => {
   return result;
 };
 
-// Function to make a soft delete of a client by ID
+// Uses a soft delete to preserve the client's historical records.
 export const deleteClient = async (clientId) => {
   const { error } = await supabase.rpc("delete_client", {
     p_client_id: clientId,

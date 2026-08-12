@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+// Delays value updates to avoid triggering a new search on every keystroke.
 const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 

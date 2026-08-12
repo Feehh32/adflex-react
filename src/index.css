@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Global box sizing */
 *,
 *::before,
 *::after {
@@ -9,13 +10,12 @@
 body {
   font-family: var(--font-primary);
   color: var(--color-text-primary);
-  box-sizing: border-box;
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* adjust colors on autofill */
+/* Keep browser autofill consistent with the application theme. */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -26,7 +26,7 @@ input:-webkit-autofill:active {
   caret-color: #f3f4f6 !important;
 }
 
-/* Remove cancel button from input [type="search"] */
+/* Remove browser-specific controls from search inputs. */
 input[type="search"]::-webkit-search-cancel-button {
   display: none;
 }
@@ -130,6 +130,7 @@ input[type="search"]::-webkit-search-decoration {
   src: url("/fonts/ibm-plex-mono/ibm-plex-mono-700.woff2") format("woff2");
 }
 
+/* Global design tokens used by Tailwind and application styles. */
 @theme {
   /* Colors */
   --color-bg: #27282b;
@@ -153,12 +154,16 @@ input[type="search"]::-webkit-search-decoration {
   --font-technical: "IBM Plex Mono", monospace;
 }
 
-/* utilitary class */
+/* Shared focus style for keyboard navigation. */
 .focus-visible {
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-prim1 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-darker transition-colors rounded-md;
 }
 
-/* print rules */
+/*
+ * Print-specific styles.
+ * Screen-only elements are hidden and document layouts are
+ * adjusted for A4 printing.
+ */
 @media print {
   @page {
     size: A4;
@@ -267,7 +272,7 @@ input[type="search"]::-webkit-search-decoration {
   }
 }
 
-/* Page transitions e animations */
+/* Page transitions and animations. */
 
 @keyframes page-enter {
   from {

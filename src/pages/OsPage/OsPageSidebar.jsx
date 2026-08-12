@@ -24,12 +24,15 @@ const OsPageSidebar = ({ serviceOrder, refreshServiceOrder }) => {
   useEffect(() => {
     if (!serviceOrder?.document_date) return;
 
+    // Keep the date input synchronized when the order data is refreshed.
     setDocDate(serviceOrder.document_date.split("T")[0]);
   }, [serviceOrder?.document_date]);
 
   const handleUpdateDate = async () => {
     try {
       setIsSavingDate(true);
+
+      // Send the date at noon to avoid timezone shifting the stored date.
       const isoDate = `${docDate}T12:00:00`;
       await updateDateOs(serviceOrder.id, isoDate);
 
@@ -50,7 +53,7 @@ const OsPageSidebar = ({ serviceOrder, refreshServiceOrder }) => {
       await deleteOs(serviceOrder.id);
 
       toast.success("Ordem de serviço excluída com sucesso.");
-      setIsDeleteOpen(false);
+
       navigate(`/clients/${serviceOrder.client.id}`, { replace: true });
     } catch (error) {
       toast.error(error.message);

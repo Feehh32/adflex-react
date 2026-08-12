@@ -20,6 +20,7 @@ const InputField = ({
   const inputId = id || name || generateId;
   const errorId = `${inputId}-error`;
   const errorMessage = error?.message || "Preencha o campo corretamente";
+  // Supports both React Hook Form and controlled inputs.
   const inputProps = register ? register(name) : { name, value, onChange };
 
   return (

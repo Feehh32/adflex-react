@@ -18,10 +18,7 @@ const ErrorScreen = ({ message, error, onRetry }) => {
           Não foi possível carregar os dados da aplicação
         </h1>
 
-        <p className="text-sm text-gray-400">
-          {errorMsg ||
-            "Verifique sua conexão ou tente novamente em alguns instantes."}
-        </p>
+        <p className="text-sm text-gray-400">{errorMsg}</p>
         {onRetry && (
           <button
             onClick={onRetry}
@@ -45,7 +42,7 @@ ErrorScreen.propTypes = {
       message: PropTypes.string,
     }),
   ]),
-  onRetry: PropTypes.func.isRequired,
+  onRetry: PropTypes.func,
 };
 
 export default ErrorScreen;

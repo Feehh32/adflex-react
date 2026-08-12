@@ -1,5 +1,57 @@
 ✅ Acessibilidade (concluído)
 ✅ Performance
-🔜 Revisão de UX (microinterações, animações, detalhes)
+✅ Revisão de UX (microinterações, animações, detalhes)
 🔜 Refatorações pontuais que aparecerem
 🔜 Testes
+
+
+verificar se precisam de comentários
+1. Services + hooks
+2. Regras/utilitários de negócio
+3. Formulários e páginas principais
+4. Contextos/layouts
+5. Banco/RPCs
+6. Componentes pequenos — só se realmente necessário
+
+base para testes: 
+Login/logout
+ Criar cliente
+ Abrir cliente existente
+ Editar cliente
+ Criar O.S.
+ Alterar/corrigir O.S.
+ Visualizar O.S.
+ Imprimir O.S.
+ Consultar vendas/resumos
+ Navegar usando os links e voltar/avançar
+2. Validações
+
+Só verificar os casos importantes:
+
+ Campo obrigatório vazio
+ Valor inválido
+ Tentativa de acessar rota protegida sem login
+ Usuário logado tentando acessar /login
+ URL inexistente → 404
+ Erro de comunicação com Supabase → ErrorScreen
+3. Dados
+
+Aqui eu seria um pouco mais cuidadoso:
+
+ Criar um cliente e confirmar no banco
+ Criar uma O.S. e conferir os valores
+ Confirmar cálculo por área
+ Confirmar sobrescrita manual quando existir
+ Confirmar que os dados históricos permanecem corretos
+ Conferir fechamento/resumos
+4. Desktop
+
+Antes de considerar o Electron pronto:
+
+ Abrir
+ Navegar
+ Fechar e abrir novamente
+ Login persistente
+ Impressão
+ Erros
+ Gerar instalador e testar em outra máquina

@@ -127,7 +127,7 @@ const ServiceItem = ({
               focus-visible px-3 py-1 rounded-md border transition cursor-pointer
               ${
                 selectedThickness === option.id
-                  ? "bg-prim1 text-white border-prim1 shadow-sm"
+                  ? "bg-prim1 text-gray-dark font-medium border-prim1 shadow-sm"
                   : "bg-gray-input border-gray-dark hover:border-prim1"
               }
             `}

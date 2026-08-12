@@ -6,6 +6,7 @@ import ButtonSpinner from "../../components/UI/ButtonSpinner";
 import Spinner from "../../components/UI/Spinner";
 
 const CURRENT_YEAR = new Date().getFullYear();
+// Keep the current year first and allow reports for the previous nine years.
 const years = Array.from({ length: 10 }, (_, i) => CURRENT_YEAR - i);
 const MONTHS = [
   { monthName: "Janeiro", monthNumber: 1 },
@@ -64,7 +65,6 @@ const MonthlyClientSalesForm = ({
         onSubmit={handleSubmit}
         className="flex gap-4 md:gap-6 md:flex-row flex-col items-start min-h-24 justify-between"
       >
-        {/* client select */}
         <div className="flex flex-col gap-2 md:w-1/3 w-full">
           <label
             htmlFor="monthly-sales-client"
@@ -112,23 +112,17 @@ const MonthlyClientSalesForm = ({
               ))}
             </select>
           </div>
-          <span className="text-xs text-red">
+          <span id="monthly-sales-client-error" className="text-xs text-red">
             {clientError && "Por favor, selecione um cliente!"}
           </span>
         </div>
-
-        {/* month select */}
         <div className="flex flex-col gap-2 md:w-1/4 w-full">
           <label
             htmlFor="summary-month"
             className={`text-sm font-medium flex gap-2`}
           >
             Mês
-            <p
-              className="text-prim1"
-              aria-hidden="true"
-              id="monthly-sales-client-error"
-            >
+            <p className="text-prim1" aria-hidden="true">
               *
             </p>
           </label>
@@ -157,7 +151,6 @@ const MonthlyClientSalesForm = ({
           </div>
         </div>
 
-        {/* year select */}
         <div className="flex flex-col gap-2 md:w-1/5 w-full">
           <label
             htmlFor="summary-year"

@@ -18,6 +18,7 @@ const SidebarUserMenu = () => {
       const { error } = await signOut();
       if (error) throw error;
     } catch (err) {
+      // Keep logout errors local to the menu and notify the user without disrupting the current layout.
       toast.error(err.message || "Erro ao fazer logout");
     }
   };

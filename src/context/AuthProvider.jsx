@@ -12,14 +12,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
 
-  const signIn = async (email, password) => {
-    return await signInService(email, password);
-  };
-  const signOut = async () => {
-    return await signOutService();
-  };
+  const signIn = (email, password) => signInService(email, password);
+  const signOut = () => signOutService();
 
   useEffect(() => {
+    // Restore the existing session when the app starts.
     const fetchSession = async () => {
       try {
         const { data } = await getSession();
@@ -36,6 +33,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    // Keep the auth state synchronized with Supabase after login, logout, or session changes.
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {

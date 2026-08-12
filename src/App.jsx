@@ -22,6 +22,7 @@ const SalesSummary = lazy(
 const LoginPage = lazy(() => import("./pages/login/LoginPage.jsx"));
 const NotFoundPage = lazy(() => import("./pages/notFound/NotFoundPage.jsx"));
 
+import Spinner from "./components/UI/Spinner.jsx";
 import { Toaster } from "react-hot-toast";
 import GlobalErrorProvider from "./context/GlobalErrorProvider.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
@@ -59,7 +60,7 @@ const App = () => {
       />
       <GlobalErrorProvider>
         <AuthProvider>
-          <Suspense fallback={null}>
+          <Suspense fallback={<Spinner title="Carregando..." />}>
             <Routes>
               <Route
                 element={
@@ -69,32 +70,30 @@ const App = () => {
                 }
               >
                 <Route index element={<Home />} />
-                {/* Clients */}
+                {/* Client routes */}
                 <Route path="/clients/:clientId" element={<ClientPage />} />
                 <Route path="/clients/new" element={<ClientFormPage />} />
                 <Route
                   path="/clients/:clientId/edit"
                   element={<ClientFormPage />}
                 />
-
-                {/* Service Orders */}
+                {/* Service order routes */}
                 <Route
                   path="/service-orders/:clientId"
                   element={<OsFormPage />}
                 />
                 <Route path="/service-orders/new" element={<OsFormPage />} />
                 <Route path="/service-order-page/:osId" element={<OsPage />} />
-
-                {/* Reports */}
+                {/* Report routes */}
                 <Route
                   path="/monthly-client-sales"
                   element={<MonthlyClientSales />}
                 />
                 <Route path="/sales-summary" element={<SalesSummary />} />
-                {/* Not Found */}
+                {/* Authenticated fallback */}
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
-              {/* Login */}
+              {/* Login is available only to unauthenticated users. */}
               <Route element={<AuthLayout />}>
                 <Route
                   path="/login"
@@ -104,7 +103,7 @@ const App = () => {
                     </GuestRoute>
                   }
                 />
-                {/* Not Found */}
+                {/* Unauthenticated fallback */}
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Routes>

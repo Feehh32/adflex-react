@@ -19,6 +19,7 @@ const ClientPage = () => {
   const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
   const handleDeleteSuccess = () => navigate("/");
 
+  // Delay search requests until the user stops typing.
   const debounceSearch = useDebounce(search, 500);
   const {
     client,
@@ -38,45 +39,45 @@ const ClientPage = () => {
   if (loading) return <Spinner title="Carregando a página do cliente" />;
 
   return (
-      <div className="flex flex-col gap-6">
-        <header>
-          <h1 className="text-2xl md:text-[32px] font-secondary font-bold mb-2">
-            {client?.name}
-            <span className="text-prim1" aria-hidden="true">
-              .
-            </span>
-            {isDeleted && (
-              <span className="text-red text-[16px]"> (Desativado)</span>
-            )}
-          </h1>
-          <ClientOverview client={client} isDeleted={isDeleted} />
-        </header>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
-          <OsArea
-            orders={orders}
-            nextPage={nextPage}
-            prevPage={prevPage}
-            pagination={pagination}
-            isSearching={isSearching}
-            search={search}
-            setSearch={setSearch}
-            isDeleted={isDeleted}
-          />
-          <ClientMetrics
-            metrics={metrics}
-            onDeleteClick={handleOpenDeleteModal}
-            isDeleted={isDeleted}
-          />
-        </div>
-        <ClientDeleteModal
+    <div className="flex flex-col gap-6">
+      <header>
+        <h1 className="text-2xl md:text-[32px] font-secondary font-bold mb-2">
+          {client?.name}
+          <span className="text-prim1" aria-hidden="true">
+            .
+          </span>
+          {isDeleted && (
+            <span className="text-red text-[16px]"> (Desativado)</span>
+          )}
+        </h1>
+        <ClientOverview client={client} isDeleted={isDeleted} />
+      </header>
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+        <OsArea
+          orders={orders}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          pagination={pagination}
+          isSearching={isSearching}
+          search={search}
+          setSearch={setSearch}
           isDeleted={isDeleted}
-          isOpen={isDeleteModalOpen}
-          onClose={handleCloseDeleteModal}
-          clientId={clientId}
-          clientName={client?.name}
-          onSuccess={handleDeleteSuccess}
+        />
+        <ClientMetrics
+          metrics={metrics}
+          onDeleteClick={handleOpenDeleteModal}
+          isDeleted={isDeleted}
         />
       </div>
+      <ClientDeleteModal
+        isDeleted={isDeleted}
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteModal}
+        clientId={clientId}
+        clientName={client?.name}
+        onSuccess={handleDeleteSuccess}
+      />
+    </div>
   );
 };
 

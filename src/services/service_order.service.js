@@ -1,7 +1,7 @@
 import { supabase } from "../services/supabase";
 
 export const createServiceOrder = async (data) => {
-  // build payload
+  // Normalize form values before sending the payload to the RPC.
   const payload = {
     p_client_id: Number(data.client_id),
     p_hide_measure: !!data.hide_measure,
@@ -19,7 +19,7 @@ export const createServiceOrder = async (data) => {
   };
   const { data: result, error } = await supabase.rpc(
     "create_service_order",
-    payload
+    payload,
   );
   if (error) throw error;
 

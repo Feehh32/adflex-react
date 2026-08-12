@@ -1,5 +1,6 @@
 import { supabase } from "../services/supabase";
 
+// Centralizes authentication operations to keep Supabase calls out of the UI.
 export const getSession = async () => {
   const result = await supabase.auth.getSession();
   return result;

@@ -18,6 +18,7 @@ export const useModalFocus = ({ isOpen, modalRef }) => {
     const firstFocusableElement =
       modalRef.current?.querySelector(focusableSelector);
 
+    // Move focus into the modal when opened and restore it when closed.
     firstFocusableElement?.focus?.() || modalRef.current?.focus?.();
 
     return () => {
@@ -43,6 +44,7 @@ export const useModalFocus = ({ isOpen, modalRef }) => {
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
 
+      // Keep keyboard focus inside the modal while navigating with Tab.
       if (event.shiftKey && document.activeElement === firstElement) {
         event.preventDefault();
         lastElement.focus();

@@ -37,12 +37,13 @@ const ClientForm = ({ client = null, isEditMode }) => {
   });
 
   useEffect(() => {
+    // Populate the form when editing a client loaded asynchronously.
     if (isEditMode && client)
       reset({
         ...client,
         charge: client?.charge != null ? Number(client.charge).toFixed(2) : "",
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [client, reset]);
 
   const { createClient, loading: creating } = useCreateClient();
@@ -58,13 +59,17 @@ const ClientForm = ({ client = null, isEditMode }) => {
       success: isEditMode
         ? "Cliente editado com sucesso."
         : "Cliente criado com sucesso.",
-      error: (err) => err.message || "Erro ao criar cliente",
+      error: (err) =>
+        err.message || isEditMode
+          ? "Erro ao editar cliente."
+          : "Erro ao criar cliente.",
     });
 
     try {
       const result = await promise;
 
       const idToRedirect = isEditMode ? client.id : result.data.id;
+      // Delay navigation so the success toast remains visible before leaving the form.
       setTimeout(() => {
         navigate(`/clients/${idToRedirect}`);
       }, 2000);
@@ -112,7 +117,7 @@ const ClientForm = ({ client = null, isEditMode }) => {
 
 ClientForm.propTypes = {
   client: PropTypes.object,
-  isEditMode: PropTypes.bool,
+  isEditMode: PropTypes.bool.isRequired,
 };
 
 export default ClientForm;

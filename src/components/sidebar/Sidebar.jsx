@@ -15,11 +15,13 @@ import SidebarUserMenu from "./SidebarUserMenu";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  // Show the back button only when browser history has a previous entry.
   const historyIndex = window.history.state?.idx ?? 0;
   const canGoBack = historyIndex > 0;
 
   return (
     <>
+      {/* Close the mobile sidebar when clicking outside of it. */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/50 md:hidden"

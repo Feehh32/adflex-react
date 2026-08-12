@@ -27,8 +27,9 @@ export const useClientPageData = (clientId, search) => {
 
   const { setGlobalError } = useGlobalError();
 
-  // 🔹 normalização da busca
+  // Normalize the search term before using it in the query.
   const searchNormalized = search?.trim() || "";
+  // Search mode starts after three characters to avoid unnecessary queries.
   const isSearching = searchNormalized.length > 2;
 
   const fetchClientPageData = async () => {
@@ -62,6 +63,7 @@ export const useClientPageData = (clientId, search) => {
         });
       }
 
+      // Keep the initial loading state separate from subsequent data updates.
       if (!hasLoadedOnce) {
         setLoading(false);
         setHasLoadedOnce(true);
@@ -78,16 +80,18 @@ export const useClientPageData = (clientId, search) => {
     }
   };
 
-  // 🔹 reset de página quando inicia busca
+  // Reset pagination when a search starts so results always begin on the first page.
   useEffect(() => {
     if (isSearching) {
       setPage(1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchNormalized]);
 
   useEffect(() => {
     if (!clientId) return;
     fetchClientPageData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clientId, page, searchNormalized]);
 
   const nextPage = () => {

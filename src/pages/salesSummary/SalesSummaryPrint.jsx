@@ -55,7 +55,7 @@ const SalesSummaryPrint = ({ salesSummary, period }) => {
         </thead>
 
         <tbody>
-          {salesSummary.sales_summary.map((client) => (
+          {(salesSummary.sales_summary ?? []).map((client) => (
             <tr key={client.client_id} className="border-b">
               <td className="py-2 pr-4">{client.client_name}</td>
 

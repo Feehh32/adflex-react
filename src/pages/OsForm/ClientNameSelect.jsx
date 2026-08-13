@@ -46,7 +46,7 @@ const ClientNameSelect = ({ error, clients, clientIdFromUrl, register }) => {
       </div>
       {error.client_id && (
         <span className="text-xs text-red" id="client-id-error">
-          {error.client_id.message || "Preencha o campo corretamente"}
+          "Este campo é obrigatório. Escolha um cliente da lista."
         </span>
       )}
     </div>

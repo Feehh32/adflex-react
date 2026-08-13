@@ -67,7 +67,7 @@ const MonthlyClientSales = () => {
           <Spinner title="Carregando balanço de vendas do cliente..." />
         )}
 
-        {!loading && hasResults && (
+        {!loading && hasResults && monthlyClientSales && (
           <MonthlyClientSalesDoc
             issuanceDate={issuanceDate}
             monthlyClientSales={monthlyClientSales}
@@ -92,7 +92,7 @@ const MonthlyClientSales = () => {
           </button>
         )}
       </div>
-      {hasResults && (
+      {hasResults && monthlyClientSales && (
         <div className="monthly-sales-print hidden">
           <MonthlyClientSalesDoc
             issuanceDate={issuanceDate}

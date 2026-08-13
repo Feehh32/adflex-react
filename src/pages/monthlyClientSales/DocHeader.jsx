@@ -16,81 +16,78 @@ const DocHeader = ({ client, month, year, issuanceDate }) => {
       </div>
 
       <div className="flex flex-col gap-4">
-        <table className="monthly-doc-info-table w-full table-fixed border-collapse">
-          <tbody>
-            <tr className="border-b border-gray-dark">
-              <td className="pb-4" colSpan={2}>
-                <span className="block text-xs uppercase text-gray-medium tracking-wide">
-                  Cliente
+        <div className="border-b border-gray-dark pb-4">
+          <span className="block text-xs uppercase tracking-wide text-gray-medium">
+            Cliente
+          </span>
+
+          <span className="block text-base font-medium text-text-primary">
+            {client?.name}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-0">
+          <div className="md:pr-4">
+            <span className="block text-xs uppercase tracking-wide text-gray-medium">
+              Competência
+            </span>
+
+            <span className="block text-base font-medium text-text-primary">
+              {`${monthName}/${year}`}
+            </span>
+          </div>
+
+          <div className="md:pl-4">
+            <span className="block text-xs uppercase tracking-wide text-gray-medium">
+              Emissão
+            </span>
+
+            <time
+              dateTime={issuanceDate}
+              className="block text-base font-medium text-text-primary"
+            >
+              {formatLongDate(issuanceDate)}
+            </time>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-0">
+          <div className="md:pr-4">
+            <span className="block text-xs uppercase tracking-wide text-gray-medium">
+              Email
+            </span>
+
+            <div className="flex flex-col gap-2">
+              <span className="block wrap-break-word text-base font-medium text-text-primary">
+                {client?.email_primary}
+              </span>
+
+              {client?.email_secondary && (
+                <span className="block wrap-break-word text-base font-medium text-text-primary">
+                  {client?.email_secondary}
                 </span>
+              )}
+            </div>
+          </div>
+
+          <div className="md:pl-4">
+            <span className="block text-xs uppercase tracking-wide text-gray-medium">
+              Telefone
+            </span>
+
+            <div className="flex flex-col gap-2">
+              <span className="block text-base font-medium text-text-primary">
+                {formatPhone(client?.phone_primary)}
+              </span>
+
+              {client?.phone_secondary && (
                 <span className="block text-base font-medium text-text-primary">
-                  {client?.name}
+                  {formatPhone(client?.phone_secondary)}
                 </span>
-              </td>
-            </tr>
-
-            <tr>
-              <td className="w-1/2 pt-4 pr-4 align-top">
-                <span className="block text-xs uppercase text-gray-medium tracking-wide">
-                  Competência
-                </span>
-                <span className="block text-base font-medium text-text-primary">
-                  {`${monthName}/${year}`}
-                </span>
-              </td>
-
-              <td className="w-1/2 pt-4 pl-4 align-top">
-                <span className="block text-xs uppercase text-gray-medium tracking-wide">
-                  Emissão
-                </span>
-                <time
-                  dateTime={issuanceDate}
-                  className="block text-base font-medium text-text-primary"
-                >
-                  {formatLongDate(issuanceDate)}
-                </time>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table className="monthly-doc-info-table w-full table-fixed border-collapse">
-          <tbody>
-            <tr>
-              <td className="w-1/2 pr-4 align-top">
-                <span className="block text-xs uppercase text-gray-medium tracking-wide">
-                  Email
-                </span>
-                <div className="flex gap-2 flex-col">
-                  <span className="block text-base font-medium text-text-primary wrap-break-word">
-                    {client?.email_primary}
-                  </span>
-                  {client?.email_secondary && (
-                    <span className="block text-base font-medium text-text-primary wrap-break-word">
-                      {client?.email_secondary}
-                    </span>
-                  )}
-                </div>
-              </td>
-
-              <td className="w-1/2 pl-4 align-top">
-                <span className="block text-xs uppercase text-gray-medium tracking-wide">
-                  Telefone
-                </span>
-                <div className="flex gap-2 flex-col">
-                  <span className="block text-base font-medium text-text-primary">
-                    {formatPhone(client?.phone_primary)}
-                  </span>
-                  {client?.phone_secondary && (
-                    <span className="block text-base font-medium text-text-primary">
-                      {formatPhone(client?.phone_secondary)}
-                    </span>
-                  )}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   );

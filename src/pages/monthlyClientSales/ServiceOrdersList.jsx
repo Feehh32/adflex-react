@@ -24,7 +24,7 @@ const ServiceOrdersList = ({ serviceOrders, month, year }) => {
         </p>
       </div>
 
-      <div className="monthly-orders-cards flex flex-col gap-3">
+      <div className="monthly-orders-cards flex flex-col md:grid gap-3">
         {serviceOrders?.map((serviceOrder) => (
           <article
             key={serviceOrder?.id}
@@ -52,7 +52,7 @@ const ServiceOrdersList = ({ serviceOrders, month, year }) => {
                   {formatLongDate(serviceOrder.document_date)}
                 </time>
               </div>
-              <div className="flex flex-col md:items-end">
+              <div className="flex flex-col md:items-end md:min-w-32">
                 <span className="text-xs uppercase tracking-wide text-gray-medium">
                   Total
                 </span>

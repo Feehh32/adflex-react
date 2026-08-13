@@ -85,6 +85,7 @@ const ClientForm = ({ client = null, isEditMode }) => {
         className="flex flex-col gap-6"
         aria-labelledby="client-form-title"
         aria-busy={isLoading}
+        noValidate
       >
         <FormHeader
           register={register}

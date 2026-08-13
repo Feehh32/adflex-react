@@ -110,8 +110,7 @@ const ServiceItem = ({
       </div>
       <fieldset className="flex gap-2 flex-wrap mt-4">
         <legend className="text-sm font-medium mb-2">
-          Espessura
-          <span className="text-prim1">*</span>
+          Espessura <span className="text-prim1">*</span>
         </legend>
         {thicknessOptions.map((option) => (
           <button

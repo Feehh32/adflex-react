@@ -4,7 +4,13 @@ export const getOsById = async (id) => {
     p_service_order_id: id,
   });
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    if (error.code === "P0001") {
+      return null;
+    }
+
+    throw new Error(error.message);
+  }
 
   return data;
 };

@@ -48,36 +48,35 @@ const OsArea = ({
         )}
       </ul>
 
-      <div
-        className={`${
-          isSearching ? "hidden" : "flex"
-        } items-center justify-between mt-6 pt-4 border-t border-gray-dark/50`}
-      >
-        <span className="text-sm text-gray-medium">
-          Página{" "}
-          <span className="text-light-gray font-bold">{pagination.page}</span>{" "}
-          de {pagination.total_pages}
-        </span>
+      {!isSearching && pagination.total_pages > 1 && (
+        <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-dark/50">
+          <span className="text-sm text-gray-medium">
+            Página{" "}
+            <span className="text-light-gray font-bold">{pagination.page}</span>{" "}
+            de {pagination.total_pages}
+          </span>
 
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={prevPage}
-            disabled={pagination.page === 1 || isDeleted}
-            className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"
-          >
-            Anterior
-          </button>
-          <button
-            type="button"
-            onClick={nextPage}
-            disabled={pagination.page === pagination.total_pages || isDeleted}
-            className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"
-          >
-            Próximo
-          </button>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={prevPage}
+              disabled={pagination.page === 1 || isDeleted}
+              className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"
+            >
+              Anterior
+            </button>
+
+            <button
+              type="button"
+              onClick={nextPage}
+              disabled={pagination.page === pagination.total_pages || isDeleted}
+              className="px-4 py-2 text-sm font-medium rounded-md bg-gray-dark border border-gray-medium/20 hover:bg-gray-darker disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer focus-visible"
+            >
+              Próximo
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

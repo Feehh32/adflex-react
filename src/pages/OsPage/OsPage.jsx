@@ -10,7 +10,9 @@ const ServiceOrderPage = () => {
   const { loading, serviceOrder, fetchServiceOrder } = useServiceOrder(osId);
 
   usePageMetadata({
-    title: `O.S ${serviceOrder?.code} - ${serviceOrder?.client?.name}`,
+    title: serviceOrder
+      ? `O.S ${serviceOrder?.code} - ${serviceOrder?.client?.name}`
+      : "Não encontrado",
   });
 
   if (loading) return <Spinner title="Carregando ordem de serviço..." />;

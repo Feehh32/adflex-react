@@ -60,7 +60,7 @@ const App = () => {
       />
       <GlobalErrorProvider>
         <AuthProvider>
-          <Suspense fallback={<Spinner title="Carregando..." />}>
+          <Suspense fallback={null}>
             <Routes>
               <Route
                 element={

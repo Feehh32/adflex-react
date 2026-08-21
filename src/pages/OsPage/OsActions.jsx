@@ -4,7 +4,15 @@ import Edit from "../../assets/icons/edit.svg?react";
 import PrintIcon from "../../assets/icons/print-icon.svg?react";
 
 const OsActions = ({ onDelete, onEdit }) => {
-  const handlePrint = () => window.print();
+  const handlePrint = async () => {
+    if (window.electronAPI?.isElectron) {
+      await window.electronAPI.printPreview();
+      return;
+    }
+
+    window.print();
+  };
+
   return (
     <section
       className="flex flex-col gap-4 text-xs p-4 bg-gray-darker rounded-lg shadow-lg border border-gray-dark text-light-gray "

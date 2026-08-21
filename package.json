@@ -1,19 +1,23 @@
 {
   "name": "adflex-react",
+  "description": "Sistema administrativo ADFlex",
+  "author": "ADFlex",
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "main": "out/main/main.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron .",
+    "dist": "electron-builder",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "start:prod": "cross-env ELECTRON_PROD=true electron ."
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@supabase/supabase-js": "^2.98.0",
     "@tailwindcss/vite": "^4.1.18",
-    "framer-motion": "^12.31.0",
     "prop-types": "^15.8.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -28,11 +32,37 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "vite": "^7.2.4",
     "vite-plugin-svgr": "^4.5.0"
+  },
+  "build": {
+    "appId": "com.adflex.app",
+    "productName": "ADFlex",
+    "artifactName": "ADFlex-Setup-${version}.${ext}",
+    "icon": "build/favicon.ico",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "allowToChangeInstallationDirectory": true,
+      "uninstallerIcon": "build/favicon.ico"
+    }
   }
 }
